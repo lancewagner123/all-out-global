@@ -321,3 +321,56 @@ again until Lance asks.
 **Next steps**
 Same open items as before. When hover-zoom (or any future change) is ready to go live again,
 confirm explicitly before pushing — don't infer permission from "make this change" alone.
+
+---
+
+## 20260730 01:07 UTC-07:00 — New catalog pattern: Floating Social Sidebar
+
+**What was worked on**
+Lance asked (question-only) whether a pattern existed for pinning social icons to a floating
+side bar, similar to the existing Footer Social Icon Hover. Checked `feature_catalog.html` — no
+such pattern existed (Fixed & Utility Elements only had the mobile action bar, Lenis smooth
+scroll, and skip-link). He then asked to add it to both the catalog and this site, using
+"traditional button logos."
+
+**What was built**
+1. **`feature_catalog.html`** (factory root, not under version control): added `#social-sidebar`
+   under Fixed & Utility Elements, plus its demo CSS. Marked "in use" citing All Out Global.
+   Reuses the Footer Social Icon Hover's motion parameters (scale 1.08 + shadow, 0.15s ease) for
+   consistency; the "traditional" part of the request was interpreted as real per-platform brand
+   colors + recognizable icon glyphs (not text initials like the footer demo's letter dots) —
+   simplified original inline SVGs for Facebook/Instagram/X/YouTube, not traced from any
+   copyrighted icon set.
+2. **This site**: added `.social-sidebar` CSS and the same markup to all 4 pages (right after the
+   skip-link, before the header — global chrome, not page-specific). Fixed to the right edge,
+   vertically centered, hidden below 860px (matches the existing mobile-nav breakpoint).
+
+**Decision — placeholder links**
+No real social accounts exist yet (brief §10 item 2, unchanged since the rough-concept build).
+Used `href="#"` on all four icons with an inline HTML comment flagging it, same treatment as the
+footer's existing "Social links — coming soon" text. Don't let these placeholder hrefs get
+mistaken for real links later.
+
+**Verification**
+Confirmed via the page's CSSOM/DOM (not a screenshot — same tooling reliability caveat as
+earlier sessions): `position:fixed`, correct per-icon brand colors, 4 icons with correct
+`aria-label`s and one SVG each. **Could not confirm the 860px mobile-hide breakpoint live** —
+the browser tool's window-resize this session didn't actually change the tab's `innerWidth` (it
+stayed fixed regardless of the requested size), so this is unverified by test, though the media
+query is textually identical in structure to the already-working `.main-nav` breakpoint in the
+same stylesheet.
+
+**Committed locally only — not pushed**, per the standing no-auto-push rule from the previous
+entry.
+
+**Current project state**
+Floating social sidebar exists in the local repo (commit `75a1c2e`) on all 4 pages, not yet on
+the live site. Catalog updated at the factory root.
+
+**Next steps**
+1. Confirm with Lance before pushing this (per the standing rule).
+2. If Lance ever wants a visual check on the 860px breakpoint, worth retrying once the browser
+   tool's resize/screenshot reliability improves, or checking directly on a phone.
+3. Same open items carried forward: real social account URLs (would replace the placeholder
+   hrefs here too), brand assets, affiliate agreements, body-armor checkout logic, booking/cart
+   tooling.

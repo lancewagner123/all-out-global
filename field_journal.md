@@ -585,3 +585,39 @@ No code changes this entry. Brief updated with the new open item.
 **Next steps**
 When Lance is ready to build the FAQ pattern, confirm which page it belongs on and get real
 Q&A content first — the code is already written and just needs the content to pair with it.
+
+---
+
+## 20260730 01:43 UTC-07:00 — Pushed all pending work to GitHub
+
+**What was worked on**
+Lance said "commit and push." Working tree was already clean (nothing to commit), with 16 local
+commits sitting ahead of `origin/master` — accumulated across this session under the standing
+no-auto-push rule (see the `feedback_no_auto_push` persistent memory, and the entries below
+covering the hover-zoom revert onward), each committed locally only while awaiting explicit push
+permission. Lance's message was that explicit permission for this specific push — not a change
+to the standing rule itself — so ran `git push`.
+
+**Why**
+Per the standing rule, local commits don't reach the remote without an explicit ask each time;
+this was that ask.
+
+**Files/folders/systems touched**
+`git push` on `master` → `origin/master`, fast-forward, 16 commits (`751d870..5699898`).
+
+**Current project state — corrects prior entries**
+Every entry since "Log hover-zoom revert and new standing no-auto-push rule" (this file, above)
+described work as "committed locally — not pushed." That is now stale: working tree is clean and
+`origin/master` is fully caught up (0 ahead / 0 behind). Everything from the floating social
+sidebar addition, the Instagram-gradient and YouTube-triangle icon fixes, the dark-gray/green
+palette experiment and its revert back to the original navy/red-orange scheme, through the
+before/after-slider and FAQ-schema/accordion notes, is now on the remote. GitHub Pages is wired
+to auto-build from `master`, so the live site (https://lancewagner123.github.io/all-out-global/)
+will reflect all of it once that build completes — not independently polled/confirmed in this
+entry, since triggering or checking a deploy is outside what `/wrap` does.
+
+**Next steps**
+Brief `docs/BUILD_BRIEF.md` §10 items 1–8 remain open (social accounts, affiliate agreements,
+body-armor checkout logic, brand assets, trust-proof material, before/after slider idea, FAQ
+schema/accordion idea) — unchanged by this push. If Lance wants the live deploy specifically
+confirmed built, that's a separate ask.

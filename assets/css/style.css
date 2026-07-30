@@ -1,23 +1,20 @@
 /* All Out Global — rough-concept stylesheet.
    Brand colors, type, and real photography are not confirmed yet (docs/BUILD_BRIEF.md §5, §10) —
-   the palette below is a ROUGH-CONCEPT placeholder, not a final brand. Colors (2026-07-30) are
-   modeled on spinat.fr's dark-gray + green scheme (Lance's reference), sampled directly from that
-   site's rendered CSS: --ink and --accent are its real values; the rest are derived to fit this
-   site's existing component set. What's worth KEEPING as-is is noted inline; those lines encode
+   the palette below is a ROUGH-CONCEPT placeholder (dark/bold, matches the "bold and direct"
+   tone answer), not a final brand. What's worth KEEPING as-is is noted inline; those lines encode
    real bugs found the hard way (see factory_instructions.md §3). */
 
 :root {
-  /* Dark-gray + green palette, modeled on spinat.fr — replace once real brand colors are supplied. */
-  --ink: #101010;
-  --ink-soft: #747474;
-  --accent: #2ba837;
-  --accent-dark: #228a2c;
-  --accent-soft: #cfead4;
-  --line: #e0e0e0;
-  --off-white: #f3f3f3;
+  /* Rough-concept placeholder palette — replace once real brand colors are supplied. */
+  --ink: #0f1620;
+  --ink-soft: #4a5568;
+  --accent: #c23b22;
+  --accent-soft: #e8dfd6;
+  --line: #e4e1d8;
+  --off-white: #f7f5f0;
   --white: #ffffff;
   --radius: 10px;
-  --shadow-sm: 0 2px 10px rgba(16, 16, 16, 0.12);
+  --shadow-sm: 0 2px 10px rgba(7, 12, 22, 0.1);
   --max: 1180px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -99,10 +96,10 @@ p:last-child { margin-bottom: 0; }
   padding-top: 14px; padding-bottom: 14px;
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--white); }
-.brand small { display: block; font-weight: 500; font-size: 0.7rem; color: #a8a8a8; letter-spacing: 0.04em; text-transform: uppercase; }
+.brand small { display: block; font-weight: 500; font-size: 0.7rem; color: #b7c0cc; letter-spacing: 0.04em; text-transform: uppercase; }
 .nav-toggle { display: none; background: none; border: 0; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 .main-nav { display: flex; align-items: center; gap: 22px; }
-.main-nav a { font-weight: 600; font-size: 0.95rem; color: #cfcfcf; }
+.main-nav a { font-weight: 600; font-size: 0.95rem; color: #dfe4ea; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--white); }
 .main-nav a.btn { color: var(--white); }
 
@@ -111,7 +108,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 700; font-size: 0.95rem; border: 2px solid transparent; cursor: pointer;
 }
 .btn-primary { background: var(--accent); color: var(--white); }
-.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary:hover { background: #a52f1b; }
 .btn-ghost { border-color: currentColor; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.25em; }
 
@@ -134,8 +131,8 @@ p:last-child { margin-bottom: 0; }
    don't ship these to a live site. */
 .ph-img {
   aspect-ratio: var(--ar, 16 / 9);
-  background: linear-gradient(135deg, var(--ink) 0%, #2b2b2b 100%);
-  color: #d5d5d5;
+  background: linear-gradient(135deg, var(--ink) 0%, #2b3648 100%);
+  color: #cfd6df;
   display: flex; align-items: center; justify-content: center;
   text-align: center; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em;
   border-radius: var(--radius); padding: 1rem;
@@ -148,7 +145,7 @@ p:last-child { margin-bottom: 0; }
 .hero .ph-img { position: absolute; inset: 0; border-radius: 0; aspect-ratio: auto; }
 .hero::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(16,16,16,0.55) 0%, rgba(16,16,16,0.85) 100%);
+  background: linear-gradient(180deg, rgba(15,22,32,0.55) 0%, rgba(15,22,32,0.85) 100%);
 }
 .hero-content {
   position: relative; z-index: 2; height: 100%;
@@ -160,14 +157,14 @@ p:last-child { margin-bottom: 0; }
   font-weight: 800; color: var(--accent-soft); margin-bottom: 0.75em;
 }
 .hero-content h1 { color: var(--white); max-width: 16ch; }
-.hero-content p { color: #cfcfcf; max-width: 52ch; font-size: 1.1rem; }
+.hero-content p { color: #dfe4ea; max-width: 52ch; font-size: 1.1rem; }
 
 /* ---------- Sections ---------- */
 .section { padding: 72px 0; }
 .section-alt { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.section-dark { background: var(--ink); color: #cfcfcf; }
+.section-dark { background: var(--ink); color: #dfe4ea; }
 .section-dark h2, .section-dark h3 { color: var(--white); }
-.section-dark p { color: #a8a8a8; }
+.section-dark p { color: #b7c0cc; }
 .section-head { max-width: 68ch; margin: 0 0 2.5em; }
 .section-head .eyebrow { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; font-weight: 800; color: var(--accent); }
 
@@ -207,33 +204,29 @@ p:last-child { margin-bottom: 0; }
    links, near the links themselves, not buried in a footer policy page. No real affiliate
    agreements are signed yet (brief §10) — this is the component, ready for when they are. */
 .disclosure-banner {
-  background: var(--accent-soft); border: 1px solid #a8d9af; border-radius: var(--radius);
-  padding: 14px 18px; font-size: 0.88rem; color: #1f5c2a; margin: 0 0 2em;
+  background: var(--accent-soft); border: 1px solid #d9c4b5; border-radius: var(--radius);
+  padding: 14px 18px; font-size: 0.88rem; color: #5a4636; margin: 0 0 2em;
 }
-.disclosure-banner strong { color: #163d15; }
+.disclosure-banner strong { color: #3d2c20; }
 
 /* ---------- Floating social sidebar ----------
    feature_catalog.html #social-sidebar. Social accounts don't exist yet
-   (docs/BUILD_BRIEF.md §10 item 2) — hrefs are "#" placeholders until real profile URLs exist.
-   Recolored 2026-07-30 to match the site's own dark-gray/green palette instead of each
-   platform's individual brand color (the catalog's "traditional" default) — a deliberate
-   site-specific override, see the catalog entry's meta note. */
+   (docs/BUILD_BRIEF.md §10 item 2) — hrefs are "#" placeholders until real profile URLs exist. */
 .social-sidebar {
   position: fixed; top: 50%; right: 0; transform: translateY(-50%);
   display: flex; flex-direction: column; z-index: 40;
 }
 .social-sidebar a {
   width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-  background: var(--ink); color: var(--white);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  background: var(--brand); color: #fff; transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .social-sidebar a svg { width: 20px; height: 20px; }
-.social-sidebar a:hover { background: var(--accent); transform: scale(1.08); box-shadow: var(--shadow-sm); z-index: 1; }
+.social-sidebar a:hover { transform: scale(1.08); box-shadow: var(--shadow-sm); z-index: 1; }
 @media (max-width: 860px) { .social-sidebar { display: none; } }
 
 /* ---------- Footer ---------- */
-.site-footer { background: var(--ink); color: #a8a8a8; padding: 48px 0 28px; font-size: 0.9rem; }
-.site-footer a { color: #cfcfcf; }
+.site-footer { background: var(--ink); color: #b7c0cc; padding: 48px 0 28px; font-size: 0.9rem; }
+.site-footer a { color: #dfe4ea; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; margin-bottom: 2em; }
 .footer-grid h4 { color: var(--white); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.8em; }
 .footer-grid ul { list-style: none; margin: 0; padding: 0; }

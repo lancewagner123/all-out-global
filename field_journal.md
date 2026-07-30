@@ -394,3 +394,34 @@ Committed locally (`38c2db2`) — not pushed, per the standing no-auto-push rule
 
 **Next steps**
 Unchanged from prior entry.
+
+---
+
+## 20260730 01:16 UTC-07:00 — Audited all 4 social icons for current-brand accuracy
+
+**What was worked on**
+Lance asked to make sure all logos are current (interpreted "and move" as confirming the hover
+motion is consistent across all four, given the exact wording was ambiguous — noted this
+interpretation to him in case he meant something else). Audited each icon against real current
+branding:
+- Facebook (blue circle + white "f") — accurate, no change.
+- Instagram (gradient, fixed last entry) — accurate, no change.
+- X (black circle + white X mark) — accurate, no change.
+- **YouTube — fixed.** Was drawing an outlined rectangle behind the play triangle, the only icon
+  using a container-shape glyph instead of a plain glyph like the other three. Removed the
+  rectangle, kept just the white play triangle on the red circle — matches how the mark reads
+  in a circular badge and brings it in line with the glyph-only style of the rest of the bar.
+Updated all 4 site pages and the `feature_catalog.html` `#social-sidebar` demo, with a
+params-table note explaining the YouTube glyph-only rationale.
+
+**Verification**
+Confirmed via computed style/DOM after reload: all 4 icons' brand colors/gradient correct,
+YouTube's SVG now a single `<path>` (no `<rect>`), and the shared `.social-sidebar a:hover` rule
+(scale 1.08 + shadow) applies generically to all four — none opted out, so hover motion is
+consistent across the bar.
+
+**Current project state**
+Committed locally (`4b1bd56`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Unchanged from prior entries.

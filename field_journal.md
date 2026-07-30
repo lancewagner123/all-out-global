@@ -558,3 +558,30 @@ fresh cherry-pick.
 
 **Next steps**
 Unchanged from prior entries.
+
+---
+
+## 20260730 01:40 UTC-07:00 — Re-audited icons post-revert; noted future FAQ schema/accordion idea
+
+**What was worked on**
+Two things this entry:
+1. Lance repeated the "ensure all logos are current and move" check right after the color
+   revert. Re-verified via DOM/computed style: Facebook (blue + f), Instagram (gradient +
+   camera), X (black + X mark), and YouTube (red + plain triangle) are all still correct and
+   unaffected by the color-scheme revert — those two prior fixes (Instagram gradient, YouTube
+   shape) live in separate commits from the palette work, so the revert didn't touch them. Hover
+   motion (scale 1.08 + shadow) also confirmed still present. No changes needed.
+2. Lance noted (not a build request, same "note:" pattern as the before/after slider idea) that
+   FAQPage schema + an FAQ accordion should eventually be added to "this page" (unspecified which
+   one). Checked the catalog — both patterns already exist: `#faq-schema` (FAQPage Schema, SEO &
+   Discoverability) and `#faq-accordion` (FAQ Accordion, Conversion & Lead-Gen), designed as a
+   pair. Neither built anywhere in the factory yet. Logged as open item §10.8 in
+   `docs/BUILD_BRIEF.md` rather than building — the real blocker is actual FAQ content, which
+   doesn't exist yet, same shape of gap as the before/after slider's missing photos.
+
+**Current project state**
+No code changes this entry. Brief updated with the new open item.
+
+**Next steps**
+When Lance is ready to build the FAQ pattern, confirm which page it belongs on and get real
+Q&A content first — the code is already written and just needs the content to pair with it.

@@ -183,3 +183,11 @@ claim not explicitly supplied later.
    Slider" — vanilla JS/CSS, draggable handle, no dependencies) but is unbuilt on any factory
    site. Needs two same-framing photos per scenario when it's time to build — that's the real
    cost, not the code. Don't build until Lance asks; this is a placeholder for intent only.
+8. **Future idea, not yet actioned (noted 2026-07-30):** add FAQPage schema + a visible FAQ
+   accordion to a page (which page wasn't specified — confirm with Lance when this gets built).
+   Both patterns already exist in `feature_catalog.html`: `#faq-schema` ("FAQPage Schema," SEO &
+   Discoverability) and `#faq-accordion` ("FAQ Accordion (native widget)," Conversion & Lead-Gen)
+   — designed as a pair, same Q&A content feeding both the visible widget and the structured
+   data. Neither is built on any factory site yet. The real blocker when it's time to build is
+   actual FAQ content (real questions and answers relevant to threat awareness/consulting/gear),
+   which doesn't exist in this brief yet — not the code, which is already written.

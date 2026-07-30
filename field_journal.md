@@ -253,3 +253,32 @@ goal. Rough concept (4 pages) from the prior entry is what's in the initial comm
 2. Everything else carried over from the prior entry: visual QA pass, reaction to the concept
    direction, remaining vertical hubs, brand assets, social accounts, affiliate agreements,
    body-armor checkout logic, booking/cart tooling.
+
+---
+
+## 20260730 00:15 UTC-07:00 — Deployed to GitHub Pages
+
+**What was worked on**
+Lance asked to deploy the site (a step beyond the prior "push a repo" request). Ran the
+`factory-deploy` skill: enabled GitHub Pages on the existing repo (`gh api .../pages`, branch
+`master`, path `/`), then per the skill's placeholder-domain rule — no custom domain is
+registered yet (brief §9) — added real `<link rel="canonical">` tags on all four pages pointing
+at the actual Pages URL instead of leaving them as a "TBD" comment (which is what `index.html`
+had). Committed and pushed, then polled `pages/builds/latest` until `status: "built"` (6 polls,
+~30s) before confirming.
+
+**Verification**
+`curl` against the live URL returned `200` and the correct `<title>`, confirming the deployment
+is actually serving the site, not just that the API call succeeded.
+
+**Current project state**
+Live at **https://lancewagner123.github.io/all-out-global/** — public GitHub Pages site, no
+custom domain yet. This is still the rough-concept build (4 pages, placeholder branding/images,
+no real current-events copy) — live now, but not review-ready in the sense of being finished.
+
+**Next steps**
+Unchanged from prior entries: visual QA pass (screenshot tool was failing this session — worth
+a fresh look), Lance's reaction to the concept direction, remaining vertical hubs, brand assets,
+social accounts, affiliate agreements, body-armor checkout logic, booking/cart tooling. Add a
+CNAME and swap canonical URLs to the real domain once one is purchased (factory-deploy skill's
+own rule).

@@ -282,3 +282,42 @@ a fresh look), Lance's reaction to the concept direction, remaining vertical hub
 social accounts, affiliate agreements, body-armor checkout logic, booking/cart tooling. Add a
 CNAME and swap canonical URLs to the real domain once one is purchased (factory-deploy skill's
 own rule).
+
+---
+
+## 20260730 00:56 UTC-07:00 — Added, then reverted, homepage hover-zoom; new standing rule on pushes
+
+**What was worked on**
+Added the catalog's Image Hover Zoom pattern (`feature_catalog.html #image-hover-zoom`) to the 4
+tiles in Home → "Who We Help," scoped via a new `.tile-zoom` modifier so it didn't also affect
+the visually-similar merchandise tiles on `personal-protection.html`. Committed and pushed
+(`b48f675`). Verified the CSS rules and class scoping directly via the page's CSSOM (all 4 tiles
+carry `.tile-zoom`, `personal-protection.html` tiles don't) — the browser tool's hover simulation
+was flaky this session (contradictory `:hover` reads between calls, consistent with the
+screenshot tool also failing this session), so did not treat that as proof; CSSOM inspection is
+deterministic and was treated as sufficient given the pattern is already proven elsewhere
+(Easy Website).
+
+**Reverted per Lance's instruction**
+Lance said "do not deploy this" right after the push. Asked for clarification: he wanted the
+push itself reverted (not just "don't deploy going forward") — `git revert b48f675` (new commit
+`751d870`, not a force-push/reset), pushed. Live Pages site had not yet rebuilt onto the
+hover-zoom commit at the time (`pages/builds/latest` still showed the prior commit), so this
+revert should mean the hover-zoom change never actually went live before being pulled back.
+
+**New standing rule (Lance confirmed this is general, not one-off)**
+Don't `git push` / trigger a deploy without explicit per-change permission, even for small edits.
+Local commits are fine; going live is a separate ask every time. Saved as a persistent-memory
+feedback entry (`feedback_no_auto_push.md`) so this carries across sessions, not just this one.
+**Going forward: commit locally when work is done, but stop and ask before `git push` on this
+repo (and any other factory site) unless Lance explicitly says to push/deploy this specific
+change.**
+
+**Current project state**
+Live site is back to the pre-hover-zoom state. The hover-zoom CSS/HTML change exists in git
+history (both the add and the revert) but is not currently applied on `master`'s tip. Not pushed
+again until Lance asks.
+
+**Next steps**
+Same open items as before. When hover-zoom (or any future change) is ready to go live again,
+confirm explicitly before pushing — don't infer permission from "make this change" alone.

@@ -501,3 +501,29 @@ Committed locally (`2761866`) — not pushed, per the standing no-auto-push rule
 
 **Next steps**
 Unchanged.
+
+---
+
+## 20260730 01:32 UTC-07:00 — Noted future idea: before/after comparison slider
+
+**What was worked on**
+Lance flagged (note only, not a build request) that he may eventually want before/after image
+comparison sliders contrasting an unprepared vs. a prepared individual. Checked
+`feature_catalog.html` — the exact pattern already exists (`#compare-slider`, "Before/After Image
+Comparison Slider," Media & Galleries section): draggable handle, `clip-path` mechanism, vanilla
+JS/CSS, no dependencies, currently marked "new" (researched 2026-07-27, not built on any factory
+site yet). Originally scoped for contractor "prove the work" shots (AKC Electric panel upgrades)
+but the mechanism is generic and fits this use case directly.
+
+**Recorded, not built**
+Added as open item §10.7 in `docs/BUILD_BRIEF.md` — explicitly a placeholder for intent, not an
+active task. The real cost when Lance is ready is two same-framing photos per scenario
+(unprepared/prepared pair), not the slider code itself, which is already written and just needs
+dropping in.
+
+**Current project state**
+No code changes this entry — brief updated only.
+
+**Next steps**
+When Lance asks to build this, pull the code directly from `feature_catalog.html#compare-slider`
+rather than re-deriving it, and plan the photo pairs first since that's the actual bottleneck.

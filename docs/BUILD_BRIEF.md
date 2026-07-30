@@ -177,3 +177,9 @@ claim not explicitly supplied later.
 6. **No trust-proof material exists yet** (§7) — if/when licenses, certifications, or credentials
    become available for the consulting track, add them here before publishing any credibility
    claim.
+7. **Future idea, not yet actioned (noted 2026-07-30):** Lance may eventually want before/after
+   image comparison sliders contrasting an unprepared vs. a prepared individual. The pattern
+   already exists in `feature_catalog.html` (`#compare-slider`, "Before/After Image Comparison
+   Slider" — vanilla JS/CSS, draggable handle, no dependencies) but is unbuilt on any factory
+   site. Needs two same-framing photos per scenario when it's time to build — that's the real
+   cost, not the code. Don't build until Lance asks; this is a placeholder for intent only.

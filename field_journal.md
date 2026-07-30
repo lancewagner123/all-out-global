@@ -425,3 +425,56 @@ Committed locally (`4b1bd56`) — not pushed, per the standing no-auto-push rule
 
 **Next steps**
 Unchanged from prior entries.
+
+---
+
+## 20260730 01:25 UTC-07:00 — Palette reworked to dark-gray + green (spinat.fr reference)
+
+**What was worked on**
+Lance asked for the entire site's color scheme to be updated to colors similar to the dark gray
+and green on https://www.spinat.fr/, then for the floating social sidebar to match the site's
+new colors. Navigated there and sampled real rendered colors via computed style rather than
+guessing from a screenshot (the browser tool's screenshot capture was still unreliable this
+session) — weighted by visible area for backgrounds and by occurrence count for text, so the
+result reflects what actually dominates the page rather than an incidental one-off color:
+- Dark sections: `#101010` (by far the largest weighted dark background)
+- Body text: `#747474`
+- Accent: `#2ba837` (green — used across links/buttons/accents)
+- Light alt background: `#f3f3f3`
+Deliberately left out spinat.fr's minor gold accent (`#f2b01e`) since Lance's ask was specifically
+"dark gray and green," not a third color.
+
+**What changed**
+`assets/css/style.css` root variables (`--ink`, `--ink-soft`, `--accent`, `--accent-soft`,
+`--line`, `--off-white`) replaced, plus every hardcoded color that referenced the old
+navy/orange scheme rather than a variable: nav/header text grays, hero overlay + hero text,
+`.section-dark` text, `.ph-img` placeholder gradient/text, `.disclosure-banner` border/text
+(recolored to a readable dark-green-on-light-green pairing), footer text, and shadow rgba values
+(previously tied to the old navy ink). Added `--accent-dark` for the button hover state
+(previously a dark red left over from the old palette).
+
+**Social sidebar recolored, per instruction**
+Removed the per-platform `--brand` inline styles (Facebook blue, Instagram gradient, X black,
+YouTube red) from all 4 pages. `.social-sidebar a` now uses `var(--ink)` as its base background
+and switches to `var(--accent)` (green) on hover, instead of individual platform brand colors —
+a deliberate site-specific override of the catalog's "traditional" default.
+
+**Catalog updated to document both variants**
+`feature_catalog.html` `#social-sidebar` entry's live demo still shows the traditional
+brand-color treatment (kept as the general documented default for future sites), but the meta
+and params rows now explain All Out Global uses a "site-matched" variant instead, and the code
+sample includes that variant's actual CSS as a documented alternative.
+
+**Verification**
+Confirmed via computed style after reload: `--ink`/`--accent` resolve correctly, header/button/
+sidebar backgrounds all match the new palette, and the sidebar's hover rule correctly switches
+background to green. Screenshot tool remained unreliable this session (same caveat as prior
+entries) — no pixel-level visual check, verified via CSSOM/computed-style inspection only.
+
+**Current project state**
+Committed locally (`ff5ffa1`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Unchanged from prior entries. Worth a real visual check (screenshot tool or Lance's own eyes at
+`http://localhost:8847/`) once that tooling is reliable again, given how much of this turn was
+verified via computed style rather than sight.

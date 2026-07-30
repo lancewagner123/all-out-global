@@ -10,8 +10,8 @@
   /* Dark-gray + green palette, modeled on spinat.fr — replace once real brand colors are supplied. */
   --ink: #101010;
   --ink-soft: #747474;
-  --accent: #22862c;
-  --accent-dark: #1b6a22;
+  --accent: #2ba837;
+  --accent-dark: #228a2c;
   --accent-soft: #cfead4;
   --line: #e0e0e0;
   --off-white: #f3f3f3;
@@ -224,7 +224,7 @@ p:last-child { margin-bottom: 0; }
 }
 .social-sidebar a {
   width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-  background: var(--ink); color: var(--white); border: 1px solid var(--accent);
+  background: var(--ink); color: var(--white);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 .social-sidebar a svg { width: 20px; height: 20px; }

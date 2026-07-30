@@ -527,3 +527,34 @@ No code changes this entry — brief updated only.
 **Next steps**
 When Lance asks to build this, pull the code directly from `feature_catalog.html#compare-slider`
 rather than re-deriving it, and plan the photo pairs first since that's the actual bottleneck.
+
+---
+
+## 20260730 01:35 UTC-07:00 — Reverted to original site colors
+
+**What was worked on**
+Lance asked to go back to the original site colors. Used `git revert` (not a hand-edit or
+reset) on the two commits that introduced the spinat.fr-modeled dark-gray/green scheme, in
+reverse order: `2761866` (green darken + sidebar border) then `ff5ffa1` (the palette rework
+itself, which also recolored the social sidebar to match the site instead of per-platform brand
+colors). Both reverted cleanly, no conflicts.
+
+**Result**
+Back to the original rough-concept palette: `--ink: #0f1620` (navy), `--accent: #c23b22`
+(red/orange), and the social sidebar back to per-platform brand colors (Facebook blue, Instagram
+gradient, X black, YouTube red) rather than the site-matched dark-gray/green treatment. The
+YouTube icon shape fix (plain triangle, no rectangle) and the Instagram gradient — both
+independent of the site-palette question — were untouched by this revert and remain in place.
+
+**Verification**
+Confirmed via computed style after reload: `--ink`/`--accent` back to original values, header
+background back to navy, Facebook icon back to its real brand blue.
+
+**Current project state**
+Committed locally (`eeab7ca`, `6b0179b`) — not pushed, per the standing no-auto-push rule. The
+dark-gray/green work still exists in git history (both the original commits and these reverts)
+if Lance ever wants it back — reachable via `git revert` again on the revert commits, or a
+fresh cherry-pick.
+
+**Next steps**
+Unchanged from prior entries.

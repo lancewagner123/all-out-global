@@ -209,6 +209,21 @@ p:last-child { margin-bottom: 0; }
 }
 .disclosure-banner strong { color: #3d2c20; }
 
+/* ---------- Floating social sidebar ----------
+   feature_catalog.html #social-sidebar. Social accounts don't exist yet
+   (docs/BUILD_BRIEF.md §10 item 2) — hrefs are "#" placeholders until real profile URLs exist. */
+.social-sidebar {
+  position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+  display: flex; flex-direction: column; z-index: 40;
+}
+.social-sidebar a {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: var(--brand); color: #fff; transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.social-sidebar a svg { width: 20px; height: 20px; }
+.social-sidebar a:hover { transform: scale(1.08); box-shadow: var(--shadow-sm); z-index: 1; }
+@media (max-width: 860px) { .social-sidebar { display: none; } }
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: #b7c0cc; padding: 48px 0 28px; font-size: 0.9rem; }
 .site-footer a { color: #dfe4ea; }

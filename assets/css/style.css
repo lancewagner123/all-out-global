@@ -1,0 +1,220 @@
+/* All Out Global — rough-concept stylesheet.
+   Brand colors, type, and real photography are not confirmed yet (docs/BUILD_BRIEF.md §5, §10) —
+   the palette below is a ROUGH-CONCEPT placeholder (dark/bold, matches the "bold and direct"
+   tone answer), not a final brand. What's worth KEEPING as-is is noted inline; those lines encode
+   real bugs found the hard way (see factory_instructions.md §3). */
+
+:root {
+  /* Rough-concept placeholder palette — replace once real brand colors are supplied. */
+  --ink: #0f1620;
+  --ink-soft: #4a5568;
+  --accent: #c23b22;
+  --accent-soft: #e8dfd6;
+  --line: #e4e1d8;
+  --off-white: #f7f5f0;
+  --white: #ffffff;
+  --radius: 10px;
+  --shadow-sm: 0 2px 10px rgba(7, 12, 22, 0.1);
+  --max: 1180px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* height: auto is not optional here — without it, an <img> with HTML width/height
+   attributes keeps its ORIGINAL height once max-width scales the width down,
+   producing a tall, mostly-cropped sliver. See factory_instructions.md §3, Trap 2. */
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+/* Skip-link — required on every site, not optional. Keep this rule even after
+   the placeholder palette below is replaced with real brand colors; just make
+   sure the swapped-in background/text pair still has strong contrast. The
+   anchor itself already lives in index.html (`<a class="skip-link" href="#main">`)
+   and `<main id="main">` — copy both onto every new page this site gets. */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--white);
+  padding: 10px 16px;
+  z-index: 100;
+  font-weight: 700;
+  border-radius: 0 0 6px 0;
+}
+.skip-link:focus { left: 0; }
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; color: var(--ink-soft); }
+p:last-child { margin-bottom: 0; }
+
+/* Full-bleed hero with a photo behind overlaid text: DO NOT combine aspect-ratio
+   with max-height on the same element (factory_instructions.md §3, Trap 1) — it
+   shrinks the element's WIDTH to preserve the ratio instead of just capping height,
+   leaving empty gutters instead of a full-width banner. Set height directly instead:
+     .hero { height: min(<H/W as vw>, <cap>px); }
+   e.g. for a 1700x924 photo: height: min(54.35vw, 700px);
+   Verify with getBoundingClientRect(), not just a screenshot at one viewport width. */
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px; padding-bottom: 14px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--white); }
+.brand small { display: block; font-weight: 500; font-size: 0.7rem; color: #b7c0cc; letter-spacing: 0.04em; text-transform: uppercase; }
+.nav-toggle { display: none; background: none; border: 0; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+.main-nav { display: flex; align-items: center; gap: 22px; }
+.main-nav a { font-weight: 600; font-size: 0.95rem; color: #dfe4ea; }
+.main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--white); }
+.main-nav a.btn { color: var(--white); }
+
+.btn {
+  display: inline-block; padding: 12px 22px; border-radius: 999px;
+  font-weight: 700; font-size: 0.95rem; border: 2px solid transparent; cursor: pointer;
+}
+.btn-primary { background: var(--accent); color: var(--white); }
+.btn-primary:hover { background: #a52f1b; }
+.btn-ghost { border-color: currentColor; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.25em; }
+
+@media (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .main-nav {
+    position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--ink); flex-direction: column; align-items: stretch;
+    padding: 10px 24px 20px; gap: 4px;
+    display: none;
+  }
+  .main-nav a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  body.nav-open .main-nav { display: flex; }
+}
+
+/* ---------- Placeholder image blocks ----------
+   Real photography is not available yet (docs/BUILD_BRIEF.md §5/§10) — these stand in for it in
+   the rough concept so layout/aspect-ratio decisions are visible without fabricating stock
+   photos. Swap each for a real <img> (with width/height + srcset) once assets are supplied;
+   don't ship these to a live site. */
+.ph-img {
+  aspect-ratio: var(--ar, 16 / 9);
+  background: linear-gradient(135deg, var(--ink) 0%, #2b3648 100%);
+  color: #cfd6df;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em;
+  border-radius: var(--radius); padding: 1rem;
+}
+.ph-img span { max-width: 26ch; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; color: var(--white); overflow: hidden;
+  height: min(46vw, 620px); min-height: 380px; }
+.hero .ph-img { position: absolute; inset: 0; border-radius: 0; aspect-ratio: auto; }
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15,22,32,0.55) 0%, rgba(15,22,32,0.85) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; height: 100%;
+  max-width: var(--max); margin: 0 auto; padding: 0 24px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-eyebrow {
+  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem;
+  font-weight: 800; color: var(--accent-soft); margin-bottom: 0.75em;
+}
+.hero-content h1 { color: var(--white); max-width: 16ch; }
+.hero-content p { color: #dfe4ea; max-width: 52ch; font-size: 1.1rem; }
+
+/* ---------- Sections ---------- */
+.section { padding: 72px 0; }
+.section-alt { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-dark { background: var(--ink); color: #dfe4ea; }
+.section-dark h2, .section-dark h3 { color: var(--white); }
+.section-dark p { color: #b7c0cc; }
+.section-head { max-width: 68ch; margin: 0 0 2.5em; }
+.section-head .eyebrow { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; font-weight: 800; color: var(--accent); }
+
+/* ---------- Pillar / feature cards ---------- */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .grid-4 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow-sm);
+}
+.card h3 { margin-bottom: 0.4em; }
+.card .card-tag {
+  display: inline-block; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.6em;
+}
+
+/* ---------- Vertical / headline cards with placeholder image ---------- */
+.tile { display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line); background: var(--white); box-shadow: var(--shadow-sm); }
+.tile .ph-img { border-radius: 0; }
+.tile-body { padding: 20px 22px 24px; }
+.tile-body h3 { margin-bottom: 0.35em; }
+.tile-link { font-weight: 700; color: var(--accent); }
+
+/* ---------- Headlines / trend module ---------- */
+.headline-item { border-left: 4px solid var(--accent); padding: 4px 0 4px 20px; margin-bottom: 1.75em; }
+.headline-item:last-child { margin-bottom: 0; }
+.headline-item .kicker { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+.headline-item h3 { margin: 0.2em 0 0.3em; }
+.headline-item .source-note { font-size: 0.85rem; color: var(--ink-soft); font-style: italic; }
+
+/* ---------- Affiliate disclosure banner ----------
+   Reusable component per docs/BUILD_BRIEF.md §8 — must appear on every page carrying affiliate
+   links, near the links themselves, not buried in a footer policy page. No real affiliate
+   agreements are signed yet (brief §10) — this is the component, ready for when they are. */
+.disclosure-banner {
+  background: var(--accent-soft); border: 1px solid #d9c4b5; border-radius: var(--radius);
+  padding: 14px 18px; font-size: 0.88rem; color: #5a4636; margin: 0 0 2em;
+}
+.disclosure-banner strong { color: #3d2c20; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: #b7c0cc; padding: 48px 0 28px; font-size: 0.9rem; }
+.site-footer a { color: #dfe4ea; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; margin-bottom: 2em; }
+.footer-grid h4 { color: var(--white); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.8em; }
+.footer-grid ul { list-style: none; margin: 0; padding: 0; }
+.footer-grid li { margin-bottom: 0.5em; }
+@media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; font-size: 0.82rem; }

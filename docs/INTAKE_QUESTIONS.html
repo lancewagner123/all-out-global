@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Project Intake Questionnaire</title>
+<style>
+  :root{
+    --ground:#e9eeee; --surface:#ffffff;
+    --ink:#17242a; --ink-soft:#556168; --ink-faint:#8a9498;
+    --line:#dbe2e2; --line-soft:#e6ebeb;
+    --accent:#175a63; --accent-strong:#0f474f; --accent-tint:rgba(23,90,99,.07);
+    --chip-bg:#ffffff; --chip-border:#ccd7d7; --chip-ink:#2c3a3f;
+    --warn:#9a5a2c;
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0c1214; --surface:#141d1f;
+      --ink:#e9efee; --ink-soft:#9dabad; --ink-faint:#6f7d7f;
+      --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.06);
+      --accent:#6cbcc4; --accent-strong:#8fd0d6; --accent-tint:rgba(108,188,196,.08);
+      --chip-bg:rgba(255,255,255,.03); --chip-border:rgba(255,255,255,.15); --chip-ink:#c8d3d3;
+      --warn:#d18a4f;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#e9eeee; --surface:#ffffff;
+    --ink:#17242a; --ink-soft:#556168; --ink-faint:#8a9498;
+    --line:#dbe2e2; --line-soft:#e6ebeb;
+    --accent:#175a63; --accent-strong:#0f474f; --accent-tint:rgba(23,90,99,.07);
+    --chip-bg:#ffffff; --chip-border:#ccd7d7; --chip-ink:#2c3a3f;
+    --warn:#9a5a2c;
+  }
+  :root[data-theme="dark"]{
+    --ground:#0c1214; --surface:#141d1f;
+    --ink:#e9efee; --ink-soft:#9dabad; --ink-faint:#6f7d7f;
+    --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.06);
+    --accent:#6cbcc4; --accent-strong:#8fd0d6; --accent-tint:rgba(108,188,196,.08);
+    --chip-bg:rgba(255,255,255,.03); --chip-border:rgba(255,255,255,.15); --chip-ink:#c8d3d3;
+    --warn:#d18a4f;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font-body);
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1200px 600px at 50% -200px,var(--accent-tint),transparent 70%)}
+
+  .sheet{max-width:880px;margin:clamp(20px,5vw,60px) auto;background:var(--surface);
+    border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:4px;
+    padding:clamp(28px,6vw,68px) clamp(22px,6vw,72px);
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 60px -30px rgba(0,0,0,.25);
+    animation:rise .5s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+
+  .eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 16px}
+  h1{font-family:var(--font-display);font-weight:600;font-size:clamp(1.9rem,4.6vw,2.9rem);
+    line-height:1.1;letter-spacing:-.01em;text-wrap:balance;margin:0 0 16px}
+  .lead{color:var(--ink-soft);font-size:1.06rem;max-width:56ch;margin:0 0 26px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:baseline;
+    padding-top:20px;border-top:1px solid var(--line);
+    font-family:var(--font-mono);font-size:.76rem;letter-spacing:.04em;color:var(--ink-faint);
+    font-variant-numeric:tabular-nums}
+  .meta b{color:var(--ink);font-weight:600}
+
+  main{margin-top:8px}
+
+  .group{margin-top:clamp(38px,6vw,58px)}
+  .group-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .group-head h2{font-family:var(--font-display);font-weight:600;font-size:1.4rem;letter-spacing:-.01em;margin:0}
+  .group-range{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.1em;color:var(--accent);
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .q{display:grid;grid-template-columns:2.6rem 1fr;gap:4px 14px;padding:14px 0}
+  .q + .q{border-top:1px solid var(--line-soft)}
+  .q-num{font-family:var(--font-mono);font-size:.9rem;font-weight:600;color:var(--accent);
+    font-variant-numeric:tabular-nums;padding-top:2px}
+  .q-text{margin:0;font-size:1.05rem;color:var(--ink);max-width:62ch;font-weight:500}
+  .q-hint{grid-column:2;margin:7px 0 0;color:var(--ink-soft);font-size:.92rem;max-width:64ch}
+  .q-hint a{color:var(--accent-strong)}
+
+  .subq{grid-column:2;margin-top:12px}
+  .sub-label{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin:0 0 8px}
+  .sub-note{color:var(--ink-soft);font-size:.92rem;margin:0;max-width:64ch}
+
+  .chips{grid-column:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip{font-family:var(--font-mono);font-size:.78rem;line-height:1.25;color:var(--chip-ink);
+    background:var(--chip-bg);border:1px solid var(--chip-border);border-radius:6px;
+    padding:7px 11px;white-space:normal}
+  .chip.free{border-style:dashed;color:var(--ink-faint)}
+
+  .strat{grid-column:2;margin-top:12px;display:flex;flex-direction:column;gap:14px}
+  .strat-row{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;align-items:start}
+  .strat-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-soft);padding-top:8px}
+  .strat-row .chips{grid-column:auto;margin-top:0}
+
+  #guardrails .group-range{color:var(--warn)}
+  #guardrails .q-num{color:var(--warn)}
+
+  footer{margin-top:clamp(40px,6vw,60px);padding-top:20px;border-top:1px solid var(--line);
+    font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;color:var(--ink-faint);
+    display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+  a{color:var(--accent-strong)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  @media (max-width:560px){
+    .q{grid-template-columns:1.9rem 1fr}
+    .strat-row{grid-template-columns:1fr}
+    .strat-label{padding-top:0}
+  }
+  @media print{
+    body{background:#fff}
+    .sheet{box-shadow:none;border:0;margin:0;max-width:none;animation:none}
+    .q,.group{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<article class="sheet">
+  <header>
+    <p class="eyebrow">Website Factory</p>
+    <h1>New Project Intake Questionnaire</h1>
+    <p class="lead">The standard question set for kicking off a new project. Answers become the raw
+      material for the project brief — the single source of truth for what goes on the site.</p>
+    <div class="meta">
+      <span><b>26</b> questions</span>
+      <span><b>8</b> sections</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1 -->
+    <section class="group">
+      <div class="group-head"><h2>Project scope</h2><span class="group-range">Q1–5</span></div>
+      <div class="q"><span class="q-num">1</span><p class="q-text">What is the business/project name?</p>
+        <p class="q-hint">Note both the customer-facing/trade name and the legal/registered name if they differ.</p></div>
+      <div class="q"><span class="q-num">2</span><p class="q-text">Is this a new website, rebuild, landing page, catalog, portfolio, or special project?</p></div>
+      <div class="q"><span class="q-num">3</span><p class="q-text">What is the existing website URL (if any)?</p></div>
+      <div class="q"><span class="q-num">4</span><p class="q-text">Provide a one-sentence description of the business/project.</p></div>
+      <div class="q"><span class="q-num">5</span><p class="q-text">What type or category of business is this?</p></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="group">
+      <div class="group-head"><h2>Offering &amp; audience</h2><span class="group-range">Q6–8</span></div>
+      <div class="q"><span class="q-num">6</span><p class="q-text">What are the main services, products, offers, or content?</p>
+        <p class="q-hint">Which of these are confirmed/owner-approved to publish, versus things discovered through research (a business card, reviews, directory listings) but not yet confirmed?</p></div>
+      <div class="q"><span class="q-num">7</span><p class="q-text">Who is the primary customer/audience?</p></div>
+      <div class="q"><span class="q-num">8</span><p class="q-text">What main action should visitors take?</p>
+        <p class="q-hint">(call, request quote, book, buy, visit, subscribe, download, etc.)</p></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="group">
+      <div class="group-head"><h2>Direction &amp; style</h2><span class="group-range">Q9–11</span></div>
+
+      <div class="q"><span class="q-num">9</span><p class="q-text"><strong>Preferred tone</strong> — pick the closest one or two:</p>
+        <div class="chips">
+          <span class="chip">Bold and direct</span>
+          <span class="chip">Editorial and polished</span>
+          <span class="chip">Fantasy / mythology</span>
+          <span class="chip">Friendly and local</span>
+          <span class="chip">Playful</span>
+          <span class="chip">Practical and utilitarian</span>
+          <span class="chip">Premium first</span>
+          <span class="chip">Warm and personal</span>
+          <span class="chip free">Free text / custom notes</span>
+        </div>
+      </div>
+
+      <div class="q"><span class="q-num">10</span><p class="q-text"><strong>Style preferences</strong></p>
+        <div class="subq">
+          <p class="sub-label">The feel — select any that fit</p>
+          <div class="chips" style="grid-column:auto;margin-top:0">
+            <span class="chip">Photo-heavy</span>
+            <span class="chip">Clean &amp; minimal</span>
+            <span class="chip">Dense / information-forward</span>
+            <span class="chip">Premium / luxury</span>
+            <span class="chip">Warm / community feel</span>
+            <span class="chip">Bold, CTA-heavy</span>
+            <span class="chip">Illustrated accents</span>
+            <span class="chip">Dark palette</span>
+            <span class="chip">Light palette</span>
+          </div>
+        </div>
+        <div class="subq">
+          <p class="sub-label">The layout — optional; pick one if you have a preference, otherwise we'll recommend one</p>
+          <div class="chips" style="grid-column:auto;margin-top:0">
+            <span class="chip">One long scrolling page</span>
+            <span class="chip">Classic multi-page (Home · About · Services/Products · Contact)</span>
+            <span class="chip">Browsable grid / catalog</span>
+            <span class="chip">Big imagery / gallery-forward</span>
+            <span class="chip">Story-style, section by section</span>
+            <span class="chip free">Not sure — you decide</span>
+          </div>
+        </div>
+        <div class="subq">
+          <p class="sub-label">Anything else</p>
+          <p class="sub-note">Sites you like or dislike (links help most), specific colors, brand assets, or visual direction.</p>
+        </div>
+      </div>
+
+      <div class="q"><span class="q-num">11</span><p class="q-text"><strong>Strategy style</strong> — what should the site emphasize most? Pick the one that fits, from the group matching this business type:</p>
+        <div class="strat">
+          <div class="strat-row"><span class="strat-label">Restaurant</span>
+            <div class="chips"><span class="chip">Trust-first</span><span class="chip">Premium-brand</span><span class="chip">Menu-first</span><span class="chip">Atmosphere-first</span><span class="chip">Catering / order-first</span></div></div>
+          <div class="strat-row"><span class="strat-label">Contractor / trades</span>
+            <div class="chips"><span class="chip">Estimate-first</span><span class="chip">Project-proof</span><span class="chip">Premium-craft</span></div></div>
+          <div class="strat-row"><span class="strat-label">Creator / catalog</span>
+            <div class="chips"><span class="chip">Catalog-first</span><span class="chip">Story / world-first</span><span class="chip">Support-first</span></div></div>
+          <div class="strat-row"><span class="strat-label">Venue / event</span>
+            <div class="chips"><span class="chip">Gallery-first</span><span class="chip">Booking-first</span><span class="chip">Experience-first</span></div></div>
+          <div class="strat-row"><span class="strat-label">Other / general</span>
+            <div class="chips"><span class="chip">Trust-first</span><span class="chip">Leads / enquiry-first</span><span class="chip">Brand-first</span><span class="chip">Information-first</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="group">
+      <div class="group-head"><h2>Contact &amp; reach</h2><span class="group-range">Q12–14</span></div>
+      <div class="q"><span class="q-num">12</span><p class="q-text">What is the best contact path?</p>
+        <p class="q-hint">(phone, email, form, booking link, social profile, address, etc.) If multiple phone numbers/emails exist, which single one should be published?</p></div>
+      <div class="q"><span class="q-num">13</span><p class="q-text">What is the location or service area for this business?</p>
+        <p class="q-hint">Does it vary by service (e.g. one offering is regional, another statewide)? Should a street address actually be published, or hidden because this is a service-area business?</p></div>
+      <div class="q"><span class="q-num">14</span><p class="q-text">What are the days and hours or availability — or should hours be omitted entirely?</p></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="group">
+      <div class="group-head"><h2>Trust &amp; credibility</h2><span class="group-range">Q15–16</span></div>
+      <div class="q"><span class="q-num">15</span><p class="q-text">Provide any available trust proof:</p>
+        <p class="q-hint">(reviews, licenses, certifications, years in business, insurance, testimonials, case studies, real photos, awards, etc.) For any license/registration number, confirm the exact digits. For any accreditation seal (BBB, etc.), can we get the official embeddable version rather than a downloaded/recreated image?</p></div>
+      <div class="q"><span class="q-num">16</span><p class="q-text">Who actually does the work — the named owner(s) personally, or a broader team/subcontractors?</p>
+        <p class="q-hint">Matters if the copy is going to claim something like “it's always us who shows up.”</p></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="group">
+      <div class="group-head"><h2>Assets &amp; functionality</h2><span class="group-range">Q17–18</span></div>
+      <div class="q"><span class="q-num">17</span><p class="q-text">Logo/photo/assets status?</p>
+        <p class="q-hint">Are photos real images of the actual people/work, or stock/AI-generated — and if stock/AI, can usage rights/licensing be confirmed? Any photos that must not be implied as the owner's own team or actual work? Any brand guide, fonts, or set colors we should follow?</p></div>
+      <div class="q"><span class="q-num">18</span><p class="q-text">What functionality does the site need? (select any, and note which are must-haves)</p>
+        <div class="chips">
+          <span class="chip">Contact form</span>
+          <span class="chip">Online booking / scheduling</span>
+          <span class="chip">Newsletter signup</span>
+          <span class="chip">Online store, or “shop” links out to an existing store</span>
+          <span class="chip">Map / directions</span>
+          <span class="chip">Social media links or feed</span>
+          <span class="chip">Photo gallery</span>
+          <span class="chip">Multi-language</span>
+          <span class="chip free">Other</span>
+        </div>
+        <p class="q-hint"><em>Note:</em> a static site has no backend — forms, booking, and newsletter signups need a third-party service or embed. Flag anything that must actually submit or process data so we can plan for it.</p>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="group" id="guardrails">
+      <div class="group-head"><h2>Guardrails</h2><span class="group-range">Q19–23</span></div>
+      <div class="q"><span class="q-num">19</span><p class="q-text">Are there known items/topics/statements that must be included somewhere on this website?</p></div>
+      <div class="q"><span class="q-num">20</span><p class="q-text">Are there known items/topics/statements that must be excluded/avoided?</p>
+        <p class="q-hint">Including any specific people, old addresses, prior business names, or associations that should never appear.</p></div>
+      <div class="q"><span class="q-num">21</span><p class="q-text">Are there any facts that must be exact?</p>
+        <p class="q-hint">(numbers prone to drift: license numbers, founding year, phone numbers)</p></div>
+      <div class="q"><span class="q-num">22</span><p class="q-text">Are there any known claims that should not be made?</p></div>
+      <div class="q"><span class="q-num">23</span><p class="q-text">Are there any legal, pricing, policy, service-limit, or disclaimer issues?</p>
+        <p class="q-hint">Including, for reviews specifically — are we linking out only, or is anything being quoted or written as a testimonial? (Copying review text or writing testimonials can violate platform terms or FTC rules.)</p></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="group">
+      <div class="group-head"><h2>Delivery</h2><span class="group-range">Q24–26</span></div>
+      <div class="q"><span class="q-num">24</span><p class="q-text">Preview goal?</p>
+        <p class="q-hint">(3 rough concepts, polished customer previews, delivery-ready site, etc.)</p></div>
+      <div class="q"><span class="q-num">25</span><p class="q-text">Delivery goal?</p>
+        <p class="q-hint">(local files, hosting-ready static site, GitHub repo, production deployment, etc.)</p></div>
+      <div class="q"><span class="q-num">26</span><p class="q-text">Domain &amp; hosting —</p>
+        <p class="q-hint">is there a registered domain for this site? Who controls it (registrar / DNS)? Any preference for where it's hosted, or should we recommend? (Factory default: static hosting on GitHub Pages, with a custom domain wired up once it's settled.)</p></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Website Factory · Intake template</span>
+    <span>If a fact isn't captured here, it doesn't go on the site.</span>
+  </footer>
+</article>
+
+</body>
+</html>

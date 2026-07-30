@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.log
+.claude/settings.local.json
+
+# docs/ and field_journal.md are normally git-ignored by default (see
+# factory_instructions.md §6) since they can contain non-public research notes.
+# For this repo, Lance explicitly confirmed (2026-07-30) they should be
+# included in the public push — not excluded here.

@@ -374,3 +374,23 @@ the live site. Catalog updated at the factory root.
 3. Same open items carried forward: real social account URLs (would replace the placeholder
    hrefs here too), brand assets, affiliate agreements, body-armor checkout logic, booking/cart
    tooling.
+
+---
+
+## 20260730 01:12 UTC-07:00 — Instagram icon: flat color → real gradient
+
+**What was worked on**
+Lance pointed out the Instagram icon should use its current logo style/color. Replaced the flat
+`#E1306C` background with Instagram's actual current brand gradient (`radial-gradient(circle at
+30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%)` — the standard
+yellow→orange→pink→purple treatment) across all 4 pages and in the `feature_catalog.html`
+`#social-sidebar` entry (both the live demo and the documented code sample), with a params-table
+note that Instagram is the one icon using a gradient rather than a flat brand color like the
+other three. Verified via computed style (`backgroundImage`) after a page reload — renders
+correctly.
+
+**Current project state**
+Committed locally (`38c2db2`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Unchanged from prior entry.

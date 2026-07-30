@@ -210,3 +210,46 @@ backend — all flagged inline as placeholder/TODO per brief §10.
    or writing real current-events copy.
 3. Still open from brief §10: brand assets, social accounts, affiliate agreements, body-armor
    checkout logic, consultation booking/cart tooling.
+
+---
+
+## 20260730 00:12 UTC-07:00 — Pushed to GitHub (public repo, docs included)
+
+**What was worked on**
+Lance asked to commit the project "so others can view it." Asked for clarification before
+acting, per factory_instructions.md §6 (public/private and docs/ handling must be confirmed with
+the client, not defaulted) — this project has more at stake than usual since
+`docs/BUILD_BRIEF.md` and this journal contain the full revenue-strategy and compliance
+reasoning, not just build facts.
+
+**Decisions (CONFIRMED by Lance, 2026-07-30)**
+- Goal: push a GitHub repo (not a live deployed site yet — that's a separate ask, see
+  `factory-deploy` skill when it comes up).
+- Visibility: **public.**
+- `docs/BUILD_BRIEF.md` and `field_journal.md` (this file): **include**, not excluded/gitignored.
+  Removed the `docs/` line from `.gitignore` that the template includes by default, with a comment
+  explaining why it's absent here specifically (not a template regression — a deliberate,
+  confirmed exception for this repo).
+
+**What this means going forward**
+Everything in this journal and the brief — including the full three-track revenue model, the
+tone/positioning tension and its resolution, and all compliance notes (body armor, affiliate
+disclosure, protective-rating claims) — is now publicly visible on GitHub, not just locally.
+Future entries in this journal should keep that in mind; nothing here is a private scratchpad
+anymore for this particular project.
+
+**Files/systems touched**
+`git init`, `.gitignore` edited (removed the `docs/` exclusion, replaced with an explanatory
+comment), initial commit (15 files), new GitHub repo created and pushed:
+**https://github.com/lancewagner123/all-out-global** (public).
+
+**Current project state**
+Repo is live and pushed. No GitHub Pages / live site yet — repo access only, per Lance's stated
+goal. Rough concept (4 pages) from the prior entry is what's in the initial commit.
+
+**Next steps**
+1. If Lance later wants collaborators added to view/contribute (moot now that it's public, but
+   relevant if visibility ever changes to private): `gh repo add-collaborator lancewagner123/all-out-global <username>`.
+2. Everything else carried over from the prior entry: visual QA pass, reaction to the concept
+   direction, remaining vertical hubs, brand assets, social accounts, affiliate agreements,
+   body-armor checkout logic, booking/cart tooling.

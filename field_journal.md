@@ -478,3 +478,26 @@ Committed locally (`ff5ffa1`) — not pushed, per the standing no-auto-push rule
 Unchanged from prior entries. Worth a real visual check (screenshot tool or Lance's own eyes at
 `http://localhost:8847/`) once that tooling is reliable again, given how much of this turn was
 verified via computed style rather than sight.
+
+---
+
+## 20260730 01:29 UTC-07:00 — Darkened green accent, added border to social sidebar buttons
+
+**What was worked on**
+Lance asked for the green to be slightly darker and a thin green border around each social
+sidebar button. `--accent` changed `#2ba837` → `#22862c`; `--accent-dark` (button hover-darken
+state) correspondingly darkened `#228a2c` → `#1b6a22` so it stays visually distinct from the new
+`--accent` rather than nearly matching it. Added `border: 1px solid var(--accent)` to
+`.social-sidebar a` — stays 44×44px since `box-sizing: border-box` is set globally, no layout
+shift. Updated the catalog's "site-matched variant" code sample and added a params-table row for
+the border, since it's specific to that variant, not the traditional brand-color one.
+
+**Verification**
+Confirmed via computed style: `--accent`/`--accent-dark` resolve to the new values, sidebar
+button border renders as `1px solid rgb(34, 134, 44)`, box stays 44×44px.
+
+**Current project state**
+Committed locally (`2761866`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Unchanged.

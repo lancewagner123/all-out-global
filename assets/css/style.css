@@ -97,7 +97,10 @@ p:last-child { margin-bottom: 0; }
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--white); }
 .brand small { display: block; font-weight: 500; font-size: 0.7rem; color: #b7c0cc; letter-spacing: 0.04em; text-transform: uppercase; }
-.nav-toggle { display: none; background: none; border: 0; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+.nav-toggle {
+  display: none; background: none; border: 0; color: var(--white); font-size: 1.5rem; cursor: pointer;
+  min-width: 44px; min-height: 44px; padding: 6px;
+}
 .main-nav { display: flex; align-items: center; gap: 22px; }
 .main-nav a { font-weight: 600; font-size: 0.95rem; color: #dfe4ea; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--white); }
@@ -121,6 +124,7 @@ p:last-child { margin-bottom: 0; }
     display: none;
   }
   .main-nav a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .main-nav a.btn { display: block; text-align: center; margin-top: 10px; border-bottom: none; }
   body.nav-open .main-nav { display: flex; }
 }
 
@@ -223,6 +227,22 @@ p:last-child { margin-bottom: 0; }
 .social-sidebar a svg { width: 20px; height: 20px; }
 .social-sidebar a:hover { transform: scale(1.08); box-shadow: var(--shadow-sm); z-index: 1; }
 @media (max-width: 860px) { .social-sidebar { display: none; } }
+
+/* ---------- Phone-specific tightening ----------
+   Desktop-scaled spacing (72px section padding, 28px card padding) eats too much of a phone's
+   vertical real estate — nothing here changes layout structure (that's handled by the existing
+   900px/860px/700px/560px breakpoints above), just density. */
+@media (max-width: 600px) {
+  .section { padding: 44px 0; }
+  .card { padding: 20px; }
+  .tile-body { padding: 16px 18px 20px; }
+  .grid-3, .grid-4 { gap: 16px; }
+  .hero-content p { font-size: 1rem; }
+  .btn { padding: 12px 20px; font-size: 0.9rem; }
+}
+@media (max-width: 480px) {
+  .hero { min-height: 320px; }
+}
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: #b7c0cc; padding: 48px 0 28px; font-size: 0.9rem; }

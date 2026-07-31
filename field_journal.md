@@ -741,3 +741,49 @@ Committed locally (`aa3ddba`) — not pushed, per the standing no-auto-push rule
 Push when Lance confirms. Worth a real visual check (once browser tooling or an actual device is
 available) to see whether the brightening reads as sufficient, since it was done by contrast
 math rather than sight.
+
+---
+
+## 20260730 21:28 UTC-07:00 — Reverted broad brightening; found and fixed the real footer bug
+
+**What was worked on**
+Lance said the prior brightening pass was too much overall, and specifically identified only two
+texts that needed a slight increase: the footer tagline ("Real-world threat awareness training
+paired with the products that back it up.") and the copyright line ("© 2026 All Out Global. All
+rights reserved..."). Reverted everything else — nav links, hero paragraph, footer links,
+placeholder-image caption text, and `--accent-soft` — back to their exact original pre-brightening
+values. Kept the `.section-dark .headline-item .kicker/.source-note` fix from the prior entry
+(a real ~2.4:1 contrast bug, confirmed by computation, not a stylistic choice) but dialed its
+color back to the original section-dark tone (`#b7c0cc`) instead of the extra-brightened value.
+
+**Found the actual bug while verifying the footer change**
+While confirming the footer color actually applied, discovered `.site-footer` only ever set
+`color` at the container level and relied on inheritance to reach its `<p>` children (the tagline
+and copyright line) — but the global `p { color: var(--ink-soft) }` rule directly matches those
+same `<p>` elements, and **a direct match always wins over inheritance, regardless of
+specificity.** So those two paragraphs had been rendering in `--ink-soft` (`#4a5568`, ~2.4:1
+contrast against the dark footer) the entire time, not the light color anyone assumed — the
+earlier brightening commit changed `.site-footer`'s color with zero visible effect on exactly the
+two texts Lance was asking about, which is almost certainly why the "fix" didn't land the first
+time and why this is very likely the actual "too faint to read" text from the original report.
+Added an explicit `.site-footer p` rule, bumped only slightly above the original `#b7c0cc`
+(`#bec5d1`) per the "slightly increased" ask.
+
+**Verification**
+Confirmed via computed style after reload: `.footer-grid p` and `.footer-bottom p` now correctly
+resolve to `#bec5d1` (previously silently stuck at `#4a5568` even after the "fix"). Confirmed
+`--accent-soft`, nav links, hero text, footer links, and the headline-item kicker all match their
+original pre-brightening values exactly.
+
+**Lessons learned**
+Container-level `color` on a wrapper doesn't reach descendants that have their own matching CSS
+rule, no matter how low that rule's specificity is — inheritance is the *lowest* priority in the
+cascade, not exempt from it. Worth remembering as a pattern to check for anywhere else a
+component sets color "at the top" and assumes it cascades to plain `<p>`/`<span>` children.
+
+**Current project state**
+Committed locally (`948f189`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Push when Lance confirms. Same caveat as before: verified via computed style, not sight — a real
+visual check is still worth doing once browser tooling or a device is available.

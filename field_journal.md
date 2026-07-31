@@ -621,3 +621,43 @@ Brief `docs/BUILD_BRIEF.md` §10 items 1–8 remain open (social accounts, affil
 body-armor checkout logic, brand assets, trust-proof material, before/after slider idea, FAQ
 schema/accordion idea) — unchanged by this push. If Lance wants the live deploy specifically
 confirmed built, that's a separate ask.
+
+---
+
+## 20260730 20:45 UTC-07:00 — Phone optimization pass
+
+**What was worked on**
+Lance asked to optimize for phone. The browser tool's window-resize still wasn't actually
+changing the tab's viewport this session (same limitation as earlier entries — `innerWidth`
+stayed pinned at 1284px regardless of the requested size), so did a direct CSS audit against
+known mobile-optimization criteria instead of visual/viewport testing, and fixed concrete gaps
+found:
+- `.nav-toggle` (hamburger button) had no explicit hit area — just an unpadded glyph, below the
+  44×44px minimum tap-target size accessibility/mobile guidelines call for. Added
+  `min-width/min-height: 44px` + padding.
+- The primary CTA link inside the mobile nav dropdown rendered as a small inline pill (leftover
+  desktop styling) instead of the full-width, easy-to-tap button a phone nav menu normally uses.
+  Added a `.main-nav a.btn` override inside the existing 860px breakpoint.
+- Desktop-scaled spacing (72px section padding, 28px card padding) was carried straight to phone
+  widths with no reduction, eating disproportionate vertical space on a small screen. Added a new
+  `<=600px` breakpoint tightening section/card/tile padding and grid gaps — density only, no
+  layout/structure change (the existing 900/860/700/560px breakpoints already handle structure).
+- Hero `min-height` (380px) reduced to 320px under 480px, so more content sits above the fold on
+  small phones.
+- Checked all 4 pages for inline fixed-width styles that could force horizontal overflow on a
+  narrow viewport — found only `max-width` caps (safe), no fixed px widths.
+
+**Verification**
+Confirmed via CSSOM (not visual) that all new media rules parsed without error and the
+nav-toggle's computed tap-target size is genuinely 44×44px. Could not get a real visual/viewport
+confirmation this session — same tooling caveat as prior entries (screenshot capture has also
+been unreliable throughout this session). Worth a real phone or working browser-resize check
+before treating this as fully verified.
+
+**Current project state**
+Committed locally (`87b9b49`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Get a real visual/device check on the phone-optimization changes once the browser tooling (or an
+actual phone) is available, then push if Lance confirms. Same brief §10 open items as before,
+otherwise unchanged.

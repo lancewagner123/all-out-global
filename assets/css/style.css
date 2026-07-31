@@ -9,7 +9,7 @@
   --ink: #0f1620;
   --ink-soft: #4a5568;
   --accent: #c23b22;
-  --accent-soft: #f0e9e0;
+  --accent-soft: #e8dfd6;
   --line: #e4e1d8;
   --off-white: #f7f5f0;
   --white: #ffffff;
@@ -96,13 +96,13 @@ p:last-child { margin-bottom: 0; }
   padding-top: 14px; padding-bottom: 14px;
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--white); }
-.brand small { display: block; font-weight: 500; font-size: 0.7rem; color: #c4cbd6; letter-spacing: 0.04em; text-transform: uppercase; }
+.brand small { display: block; font-weight: 500; font-size: 0.7rem; color: #b7c0cc; letter-spacing: 0.04em; text-transform: uppercase; }
 .nav-toggle {
   display: none; background: none; border: 0; color: var(--white); font-size: 1.5rem; cursor: pointer;
   min-width: 44px; min-height: 44px; padding: 6px;
 }
 .main-nav { display: flex; align-items: center; gap: 22px; }
-.main-nav a { font-weight: 600; font-size: 0.95rem; color: #e8ecf1; }
+.main-nav a { font-weight: 600; font-size: 0.95rem; color: #dfe4ea; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--white); }
 .main-nav a.btn { color: var(--white); }
 
@@ -136,7 +136,7 @@ p:last-child { margin-bottom: 0; }
 .ph-img {
   aspect-ratio: var(--ar, 16 / 9);
   background: linear-gradient(135deg, var(--ink) 0%, #2b3648 100%);
-  color: #dae1e8;
+  color: #cfd6df;
   display: flex; align-items: center; justify-content: center;
   text-align: center; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em;
   border-radius: var(--radius); padding: 1rem;
@@ -161,14 +161,14 @@ p:last-child { margin-bottom: 0; }
   font-weight: 800; color: var(--accent-soft); margin-bottom: 0.75em;
 }
 .hero-content h1 { color: var(--white); max-width: 16ch; }
-.hero-content p { color: #e8ecf1; max-width: 52ch; font-size: 1.1rem; }
+.hero-content p { color: #dfe4ea; max-width: 52ch; font-size: 1.1rem; }
 
 /* ---------- Sections ---------- */
 .section { padding: 72px 0; }
 .section-alt { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.section-dark { background: var(--ink); color: #e8ecf1; }
+.section-dark { background: var(--ink); color: #dfe4ea; }
 .section-dark h2, .section-dark h3 { color: var(--white); }
-.section-dark p { color: #c4cbd6; }
+.section-dark p { color: #b7c0cc; }
 .section-head { max-width: 68ch; margin: 0 0 2.5em; }
 .section-head .eyebrow { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; font-weight: 800; color: var(--accent); }
 
@@ -206,7 +206,7 @@ p:last-child { margin-bottom: 0; }
    is a mid-gray meant for light backgrounds and reads as barely-legible dark-on-dark there
    (~2.4:1 contrast, below the 4.5:1 minimum). Override to the light on-dark tone instead. */
 .section-dark .headline-item .kicker,
-.section-dark .headline-item .source-note { color: #c4cbd6; }
+.section-dark .headline-item .source-note { color: #b7c0cc; }
 
 /* ---------- Affiliate disclosure banner ----------
    Reusable component per docs/BUILD_BRIEF.md §8 — must appear on every page carrying affiliate
@@ -249,9 +249,19 @@ p:last-child { margin-bottom: 0; }
   .hero { min-height: 320px; }
 }
 
-/* ---------- Footer ---------- */
-.site-footer { background: var(--ink); color: #c4cbd6; padding: 48px 0 28px; font-size: 0.9rem; }
-.site-footer a { color: #e8ecf1; }
+/* ---------- Footer ----------
+   Real bug found 2026-07-30: .site-footer only set color at the container level, relying on
+   inheritance for its <p> tags (the tagline + copyright line) — but the global `p { color:
+   var(--ink-soft) }` rule directly matches those same <p> elements, and a direct match always
+   wins over inheritance regardless of specificity. Those two paragraphs were rendering in
+   --ink-soft (a mid-gray meant for light backgrounds, ~2.4:1 contrast on this dark footer), not
+   the intended light footer color — almost certainly the actual "too faint to read" text. Fixed
+   with an explicit .site-footer p rule, bumped slightly lighter than the original #b7c0cc per
+   Lance's report. Kept as a small step, not the more aggressive brighten used elsewhere and
+   reverted this same session. */
+.site-footer { background: var(--ink); color: #b7c0cc; padding: 48px 0 28px; font-size: 0.9rem; }
+.site-footer p { color: #bec5d1; }
+.site-footer a { color: #dfe4ea; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; margin-bottom: 2em; }
 .footer-grid h4 { color: var(--white); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.8em; }
 .footer-grid ul { list-style: none; margin: 0; padding: 0; }

@@ -169,7 +169,10 @@ claim not explicitly supplied later.
    Lance, or as part of this build) before any social links can be published. Track as a
    pre-launch task, not a fact.
 3. **Affiliate agreements not yet in place.** No affiliate links should go live until agreements
-   exist and the disclosure component is built (§8).
+   exist. The disclosure infrastructure itself is now built (§8) — the in-page
+   `.disclosure-banner` component on `personal-protection.html`, plus a standalone
+   `disclosure.html` policy page linked from every page's footer (added 2026-07-30) — so this is
+   ready before it's needed rather than retrofitted after affiliate links go live.
 4. **Body-armor jurisdiction handling** needs an actual implementation plan once the owned
    merchandise line is built — which states/regions to block or route differently.
 5. **Brand assets (logo, photos, colors, fonts)** — none exist yet; to be provided later per

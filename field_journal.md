@@ -661,3 +661,41 @@ Committed locally (`87b9b49`) — not pushed, per the standing no-auto-push rule
 Get a real visual/device check on the phone-optimization changes once the browser tooling (or an
 actual phone) is available, then push if Lance confirms. Same brief §10 open items as before,
 otherwise unchanged.
+
+---
+
+## 20260730 21:13 UTC-07:00 — Added standalone Affiliate Disclosure page
+
+**What was worked on**
+Lance asked whether an affiliate disclosure page was necessary; explained the FTC requires
+disclosure both conspicuously near the affiliate content itself (already covered by the
+`.disclosure-banner` component) *and* that most affiliate programs (Amazon Associates in
+particular) require a standalone policy page as a condition of approval — the site had the
+former but not the latter. Lance said to add one.
+
+**What was built**
+New `disclosure.html`, same page template/nav/footer as the other 4 pages: what affiliate links
+mean, editorial-independence statement, where in-page disclosure appears, and a "current status"
+section stating plainly that no affiliate agreements are signed yet — written so the policy is
+in place *before* it's needed rather than retrofitted after real affiliate links go live (same
+honesty discipline as everywhere else in this brief). Linked from the `footer-bottom` row on all
+5 pages now (added the link to the other 4 pages' existing footers, not just the new page), and
+cross-linked from the `personal-protection.html` disclosure banner so a reader in-context can
+reach the full policy.
+
+**Decisions made**
+- Not added to primary nav — treated as a footer-tier legal page, consistent with how disclosure/
+  privacy/terms pages are conventionally placed on most sites, not as a top-level nav item.
+
+**Verification**
+Confirmed via `get_page_text` (renders correctly) and DOM query (footer link present, resolves to
+`disclosure.html`).
+
+**Current project state**
+Committed locally (`fe6a777`) — not pushed, per the standing no-auto-push rule. Also updated
+`docs/BUILD_BRIEF.md` §10.3 to note the disclosure infrastructure (banner + standalone page) now
+exists, distinct from the still-open item of actually signing affiliate agreements.
+
+**Next steps**
+Unchanged — affiliate agreements themselves are still not in place; don't publish any real
+affiliate link until they are. Push when Lance asks.

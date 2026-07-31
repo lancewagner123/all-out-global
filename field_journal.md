@@ -699,3 +699,45 @@ exists, distinct from the still-open item of actually signing affiliate agreemen
 **Next steps**
 Unchanged — affiliate agreements themselves are still not in place; don't publish any real
 affiliate link until they are. Push when Lance asks.
+
+---
+
+## 20260730 21:20 UTC-07:00 — Fixed low-contrast text, brightened light-on-dark palette
+
+**What was worked on**
+Lance reported white text on some pages was so faint he couldn't read it. Since the browser
+resize/screenshot tooling remained unreliable this session, computed actual WCAG contrast ratios
+by hand for every light-text-on-dark-background pairing in the stylesheet rather than guessing.
+
+**Found a real, confirmed bug**
+`.headline-item .kicker` and `.headline-item .source-note` used `var(--ink-soft)` (`#4a5568`) —
+correct on `threat-awareness.html`, where that markup sits on a light background (the site's
+standard muted-text color). But the same markup also appears inside `.section-dark` on
+`index.html`'s "In the Headlines" section, where `#4a5568` against `#0f1620` computes to roughly
+**2.4:1 contrast** — well under the WCAG AA minimum of 4.5:1 for body text. This is exactly the
+kind of "one class, two background contexts, wrong color in one of them" bug the factory's own
+CSS traps documentation warns about, just not one previously written down. Added a
+`.section-dark .headline-item .kicker/.source-note` override to `#c4cbd6` (contrast ~11:1)
+instead of touching the base rule, so `threat-awareness.html`'s correct light-background usage is
+untouched.
+
+**Brightened the rest of the light-on-dark palette**
+Even where contrast technically passed, brightened it per Lance's report that it read as too
+faint: `#dfe4ea` → `#e8ecf1` (nav links, hero paragraph, section-dark text, footer links),
+`#b7c0cc` → `#c4cbd6` (header subtitle, section-dark paragraphs, footer text), `#cfd6df` →
+`#dae1e8` (placeholder-image caption text), `--accent-soft` `#e8dfd6` → `#f0e9e0` (hero eyebrow
+text / disclosure-banner background tint).
+
+**Verification**
+Confirmed via computed style on `index.html`: the section-dark headline kicker/source-note now
+resolve to the brightened `#c4cbd6` instead of the broken mid-gray, non-current nav links resolve
+to the brightened `#e8ecf1`, and the current-page/CTA links (which intentionally use pure white
+via a separate rule) were unaffected.
+
+**Current project state**
+Committed locally (`aa3ddba`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Push when Lance confirms. Worth a real visual check (once browser tooling or an actual device is
+available) to see whether the brightening reads as sufficient, since it was done by contrast
+math rather than sight.

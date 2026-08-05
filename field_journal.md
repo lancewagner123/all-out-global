@@ -839,3 +839,76 @@ placeholder; none have been swapped for real photography.
 3. Ballistic-apparel and house-brand imagery remain open gaps needing a different sourcing path
    (vendor licensing / commissioned photography), not stock.
 4. Same brief `docs/BUILD_BRIEF.md` §10 open items as before, otherwise unchanged.
+
+---
+
+## 20260805 00:06 UTC-07:00 — News-portal (CNN-style) layout rework; header tagline update
+
+**What was worked on**
+Lance asked for more of a CNN.com feel — the site will eventually carry lots of stories/photos it
+links to, and he wanted visual placeholders in place so he can judge what's still needed. Also
+asked to change the header subtitle to "All Out Global Logistics and Solutions."
+
+**Header**
+"ALL OUT GLOBAL" subtitle changed from "Understand the threat. Own the response." to "Logistics
+and Solutions" across all 5 pages (index, threat-awareness, personal-protection, contact,
+disclosure). Read together the header now says "All Out Global — Logistics and Solutions,"
+matching the literal ask; flagged to Lance that this reads as an expanded business
+name/tagline, not just cosmetic, in case that wasn't the intent.
+
+**New CSS: news/story-card module**
+Added to `assets/css/style.css`: `.news-hero` (2-col lead story + sidebar headline list, matching
+CNN's classic hero pattern), `.story-grid` (4-col equal-weight card grid), `.story-card`,
+`.story-kicker`/`.story-deck`/`.story-meta`. Every photo slot uses the existing `.ph-img`
+placeholder system (per docs/BUILD_BRIEF.md §5/§10, real photography still doesn't exist).
+Deliberately tighter gaps than `.grid-3`/`.grid-4` — news grids read denser than marketing card
+grids. This **replaces** the old text-only `.headline-item` module entirely; removed it from the
+stylesheet since nothing references it anymore.
+
+**Applied site-wide, not just one section**
+- `index.html` "In the Headlines": rebuilt as an actual news module — 1 lead story (photo + deck)
+  + 3-item sidebar headline list + 4-card photo grid = 8 placeholder stories (was 3 plain text
+  blocks, no photos).
+- `threat-awareness.html`: both the trend section and the Guides section rebuilt as photo-forward
+  story grids. Added a 4th guide (Entertainment/venue-survey) so Guides matches the site's four
+  verticals symmetrically.
+- `personal-protection.html`: the 3 review cards now carry photo placeholders too, so the
+  photo-forward feel is consistent across pages, not just the news sections specifically.
+
+**Real bug found and fixed**
+`.story-kicker` (`color: var(--accent)`, one class) silently lost to `.section-dark p` (one class
++ one type — CSS ranks class-count before type-count, so one-class-plus-type still beats a bare
+single class) for any `<p class="story-kicker">` inside a dark section. Kickers on the homepage's
+dark "In the Headlines" module were rendering gray instead of accent-red. This is the exact same
+specificity trap as the `.site-footer p` bug found 2026-07-30 — worth treating as a standing
+pattern to check for: any time a component sets `color` via a single class and that component's
+markup can appear inside `.section-dark`, verify it isn't losing to `.section-dark p`. Fixed with
+`.section-dark .story-kicker { color: var(--accent); }` (two classes beats one class + one type).
+
+**Problems encountered**
+A shell command meant to commit the field-journal-only wrap entry separately had a syntax error
+(`git commit --only <path>` didn't behave as expected) that caused a `||` fallback to fire even
+though the first commit had actually succeeded — the fallback then bundled all the CNN-layout
+changes into a second commit using the *wrong* (copy-pasted) commit message. Caught it by checking
+`git show --stat` before moving on. Since neither commit had been pushed yet, fixed it with
+`git commit --amend` on the mis-labeled commit rather than layering a "fix commit message" commit
+on top — amending here was safe (unpushed, single-session, my own mistake, not user work at risk).
+
+**Verification**
+Confirmed via computed style after reload: `.news-hero` renders as a real 2-column grid
+(~1.7:1 lead:sidebar ratio), `.story-grid` as 4 equal columns, correct story-card/sidebar-story
+counts on every page (index: 5 cards + 3 sidebar items; threat-awareness: 7 cards across 2 grids;
+personal-protection: 3 cards), and — after the kicker fix — all 15 kickers site-wide (8 in the
+dark section, 7 on light backgrounds) resolve to the correct accent color.
+
+**Current project state**
+Committed locally (`96b7161`) — not pushed, per the standing no-auto-push rule. Every `.ph-img`
+slot across all 4 content pages is still a placeholder (now more of them, deliberately, per
+Lance's ask); none have been swapped for the candidate photos sourced in the prior entry yet.
+
+**Next steps**
+1. Get Lance's reaction to the news-portal direction and confirm the header-tagline change reads
+   the way he intended.
+2. Push when he confirms.
+3. Photo selection/optimization and the ballistic-apparel/house-brand imagery gaps carry forward
+   unchanged from the prior entry.

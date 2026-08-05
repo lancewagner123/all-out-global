@@ -194,3 +194,38 @@ claim not explicitly supplied later.
    data. Neither is built on any factory site yet. The real blocker when it's time to build is
    actual FAQ content (real questions and answers relevant to threat awareness/consulting/gear),
    which doesn't exist in this brief yet — not the code, which is already written.
+
+---
+
+## 11. Current-events sources (2026-08-05 research pass)
+
+**Status: SOURCED, not CONFIRMED.** These citations were gathered by four parallel research
+agents (via `general-purpose` subagents with web search + direct article verification, not
+fabricated), each instructed to follow this brief's own editorial policy (§2): trend-level only,
+no named individual victims, no speculation on active/ongoing cases, no implied causation, real
+dated sources only. Lance has not yet reviewed or confirmed any of these individually — treat as
+SOURCED per the CONFIRMED/SOURCED/UNVERIFIED/CONTRADICTED legend until he does. Currently live on
+`index.html` ("In the Headlines") and `threat-awareness.html` (trend section).
+
+| # | Topic | Source | Date | URL |
+|---|---|---|---|---|
+| 1 | Daytime hours now peak window for home burglaries (FBI UCR data) | SafeHome.org | 2025-09-24 | https://www.safehome.org/resources/burglary-statistics/ |
+| 2 | Package theft: 1 in 4 Americans victimized, $8.2B in losses | Security.org 2025 Package Theft Report | 2025-11-06 | https://www.security.org/package-theft/annual-report/ |
+| 3 | Shelly smart-home garage/door controllers left exposed by default | Pen Test Partners | 2026-02-11 | https://www.pentestpartners.com/security-blog/shelly-iot-door-controller-config-fail-leaving-your-garage-home-and-security-exposed/ |
+| 4 | Insider-risk incidents cost orgs $19.5M/yr avg, mostly negligence-driven | Infosecurity Magazine, citing Ponemon Institute "2026 Cost of Insider Risks" | 2026-02-24 | https://www.infosecurity-magazine.com/news/cost-of-insider-incidents-surges/ |
+| 5 | Tailgating/piggybacking is the top access-control failure (61% of orgs) | ASIS International, 2023 Access Control Research Report | 2023 (still the field's benchmark stat as of 2026) | https://www.facilitiesdive.com/news/asis-international-access-control-technology-report/702577/ |
+| 6 | 91% of former employees retain some access after leaving | Beyond Identity | 2023-01-20 (still the most-cited figure as of 2026) | https://www.beyondidentity.com/resource/cybersecurity-risks-of-improper-offboarding-after-layoffs |
+| 7 | Vacation oversharing on social media flagged as a burglary-risk signal | Allstate / Léger survey, via GlobeNewswire | 2025-06-23 | https://www.globenewswire.com/news-release/2025/06/23/3103204/0/en/Allstate-survey-Nearly-one-third-of-active-social-media-users-may-potentially-risk-a-home-break-in-by-posting-online-before-or-during-a-vacation-trip.html |
+| 8 | Wearable personal-safety device market growing 8.6% CAGR, solo travelers a driver | Grand View Research | ongoing report, current as of 2026 | https://www.grandviewresearch.com/industry-analysis/smart-personal-safety-security-device-market-report |
+| 9 | Tech-enabled stalking rising; dark-web surveillance-for-hire marketplace found | Kaspersky | 2026-05-19 | https://www.kaspersky.com/about/press-releases/kaspersky-half-of-adults-have-experienced-tech-enabled-abuse-but-most-dont-recognize-it |
+| 10 | Transportation/warehousing injury rate ~2x the private-industry average | U.S. Bureau of Labor Statistics | 2026-01-22 | https://www.bls.gov/news.release/pdf/osh.pdf |
+| 11 | Updated national hand-protection (glove) standard, 71% of hand injuries preventable | International Safety Equipment Association (ISEA) | 2024-11-21 | https://safetyequipment.org/isea-announces-updated-ansi-isea-105-hand-protection-standard/ |
+| 12 | Live-events industry launches first cross-venue security-coordination summit | Pollstar News | 2026-04-17 | https://news.pollstar.com/2026/04/17/venuesnow-conference-2026-secure-venues-summit-to-take-place-in-seattle/ |
+| 13 | Stadiums rapidly expanding facial-authentication credentialing | Stadium Tech Report | 2025-06-27 | https://stadiumtechreport.com/feature/stadiums-expanding-use-of-biometric-technology-especially-facial-authentication/ |
+| 14 | AI weapons-detection screening growth, paired with regulatory scrutiny (FTC settlement) | NBC Chicago (NBC 5 Investigates) | 2024-11-18/19 | https://www.nbcchicago.com/investigations/nbc-5-investigates-weapons-detector-faces-scrutiny-amid-growing-industry/3603962/ — **not currently used on-site**, kept here as a vetted backup/alternate for the Entertainment vertical |
+
+**Notes on age:** items #5, #6, #11, and #14 are older than the ideal 6–12 month window the
+research agents were told to prefer, but each was flagged by its agent as still being the
+current, most-cited reference on that specific trend as of 2026 (not superseded by anything more
+recent found during research) — kept for that reason, with the age called out on-page in each
+citation rather than hidden.

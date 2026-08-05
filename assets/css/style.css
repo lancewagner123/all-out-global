@@ -163,6 +163,18 @@ p:last-child { margin-bottom: 0; }
 .hero-content h1 { color: var(--white); max-width: 16ch; }
 .hero-content p { color: #dfe4ea; max-width: 52ch; font-size: 1.1rem; }
 
+/* Two-column hero variant (index.html only) — headline left, supporting copy + CTAs right,
+   instead of everything stacked in one column. Shortens the hero's effective content height so
+   the sections below (including "In the Headlines") sit higher on the page — paired with a
+   reduced .hero height set inline on that page's <section class="hero">. Falls back to the
+   normal stacked flow at the same breakpoint the mobile nav uses. */
+.hero-content-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.hero-content-split h1 { max-width: none; }
+.hero-content-split .btn-row { margin-top: 1em; }
+@media (max-width: 860px) {
+  .hero-content-split { display: flex; flex-direction: column; justify-content: center; }
+}
+
 /* ---------- Sections ---------- */
 .section { padding: 72px 0; }
 .section-alt { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

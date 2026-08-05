@@ -912,3 +912,47 @@ Lance's ask); none have been swapped for the candidate photos sourced in the pri
 2. Push when he confirms.
 3. Photo selection/optimization and the ballistic-apparel/house-brand imagery gaps carry forward
    unchanged from the prior entry.
+
+---
+
+## 20260805 00:21 UTC-07:00 — More headlines, each linked to a relevant product/service
+
+**What was worked on**
+Lance asked for even more headlines, with each one associated with or linked to a product that
+could help with the referenced scenario — tying the "In the Headlines" editorial content back
+into the site's Learn → Get Advice → Get Equipped model instead of the headlines being a dead end.
+
+**What was built**
+- Homepage "In the Headlines" grew from 8 to 11 placeholder stories: lead (1) + sidebar (4, was 3)
+  + grid (6, was 4). New topics added: solo-traveler safety-alarm usage, hand-injury rates in
+  high-contact service jobs, smart-lock keypad vulnerabilities.
+- `threat-awareness.html`'s trend section grew from 3 to 4 story cards (added the hand-injury/
+  gloves trend, matching one of the new homepage items).
+- Every headline now carries a "Helps with:" link to something that actually exists on-site —
+  either a specific reviewed-gear anchor (`personal-protection.html#review-privacy`,
+  `#review-gloves`) where a matching review exists, or the Consulting page where the relevant
+  product category isn't built yet (residential/commercial/entertainment don't have their own
+  product pages). Added `id` attributes to the 3 review cards and 3 merchandise tiles on
+  `personal-protection.html` so these are real, resolvable anchors rather than placeholder hrefs.
+- The Guides section on `threat-awareness.html` was left as-is — each guide card already links
+  directly to its most relevant page, so a redundant second "helps with" link would add nothing.
+
+**Decisions made**
+Restructured `.story-card` to support two distinct links without nesting anchors (invalid HTML):
+a `.story-card-link` wrapping the photo/kicker/headline (goes to the related guide/trend page),
+and a separate `.story-related` line below it. `personal-protection.html`'s 3 review cards keep
+the simpler single-anchor pattern (whole card = one link) since they don't need a second
+"related" link back to themselves.
+
+**Verification**
+Confirmed via computed style: all "Helps with" anchor targets resolve to the correct elements on
+`personal-protection.html`, story/sidebar counts match the new totals (11 on the homepage, 8 on
+threat-awareness), and `.story-related` text/link colors read correctly in both the dark "In the
+Headlines" section and the light-background story grids.
+
+**Current project state**
+Committed locally (`1fb0230`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Same as prior entry — waiting on Lance's reaction to the news-portal direction, header-tagline
+confirmation, and photo selection. Push when he confirms.

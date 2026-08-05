@@ -956,3 +956,41 @@ Committed locally (`1fb0230`) — not pushed, per the standing no-auto-push rule
 **Next steps**
 Same as prior entry — waiting on Lance's reaction to the news-portal direction, header-tagline
 confirmation, and photo selection. Push when he confirms.
+
+---
+
+## 20260805 00:37 UTC-07:00 — Homepage hero split into two columns
+
+**What was worked on**
+Lance asked to move the hero's supporting paragraph and the two CTA buttons to the right side of
+the "Know the threat. Choose the right protection." headline, so the hero reads shorter overall
+and the sections below (including "In the Headlines") sit closer to the top of the page.
+
+**What was built**
+New `.hero-content-split` modifier in `assets/css/style.css`, scoped to `index.html` only — the
+other 3 pages' heroes (shorter variant, no buttons, just h1+p) are untouched and still use the
+base stacked `.hero-content` flow. Restructured the homepage hero markup into `.hero-left`
+(eyebrow + h1) and `.hero-right` (paragraph + `.btn-row`) inside a 2-column grid, falling back to
+the original stacked layout at the same 860px breakpoint the mobile nav already uses.
+
+**Decision — the height itself had to change too, not just the content arrangement**
+Rearranging content into columns doesn't on its own shrink `.hero`, since its height is a fixed
+`min(46vw, 620px)` formula independent of content — cutting the visual height needed an explicit
+change to that value, not just reflowing what's inside it. Reduced to `min(36vw, 500px)` /
+`min-height: 340px` (was `min-height: 380px`) on `index.html`'s hero specifically, via the same
+inline-style-override pattern the other 3 pages already use for their own shorter heroes.
+
+**Verification**
+Confirmed via computed style: `.hero-content` is `display: grid` with two equal ~546px columns
+on `index.html` (h1 in the left column, paragraph+buttons confirmed inside the right), hero
+height dropped from ~588px to ~460px at the current viewport width. Confirmed the other 3 pages'
+`.hero-content` is unaffected (still `flex`/`column`).
+
+**Current project state**
+Committed locally (`136a256`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+Push when Lance confirms. Separately, launched 4 parallel research agents (residential,
+commercial, personal/travel+gear, entertainment) to find real, current, trend-level stories to
+replace the "In the Headlines" placeholder text — see the next entry once all 4 report back and
+their findings get integrated.

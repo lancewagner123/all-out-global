@@ -994,3 +994,61 @@ Push when Lance confirms. Separately, launched 4 parallel research agents (resid
 commercial, personal/travel+gear, entertainment) to find real, current, trend-level stories to
 replace the "In the Headlines" placeholder text — see the next entry once all 4 report back and
 their findings get integrated.
+
+---
+
+## 20260805 00:44 UTC-07:00 — Real, sourced stories replace all headline placeholders
+
+**What was worked on**
+The 4 research agents launched in the prior entry all completed (residential, commercial,
+personal/travel+gear, entertainment — general-purpose subagents with web search + direct
+article verification). Each was given the site's exact editorial policy (docs/BUILD_BRIEF.md §2)
+as an explicit constraint: trend-level only, no named individual victims, no speculation on
+ongoing/active cases, no implied causation, real dated sources only, verify beyond search
+snippets. All 4 came back clean — no rule violations to filter out.
+
+**What was built**
+Replaced every "Placeholder: ..." headline with real content across both pages:
+- `index.html` "In the Headlines" — all 11 slots (lead + 4 sidebar + 6 grid) now cite real,
+  dated sources with clickable links (`target="_blank" rel="noopener noreferrer"`).
+- `threat-awareness.html` trend section — all 4 cards likewise. Two of the four reuse a story
+  already featured on the homepage (daytime-burglary stat as the fuller residential write-up,
+  the stalking/dark-web story paired with the digital-privacy review link) since threat-awareness
+  is the deeper-dive page anyway; the other two use stories not featured on the homepage
+  (employee-offboarding access-retention data, the ANSI/ISEA glove-standard update) for variety.
+- Updated the "In the Headlines" section-head disclaimer to stop calling these "rough-concept
+  placeholder entries" and instead note they're sourced via this research pass, still pending
+  Lance's own review before being treated as permanently locked in.
+- Added `docs/BUILD_BRIEF.md` §11: the full 14-source table (11 used on-site, 3 kept as vetted
+  alternates not currently used), marked **SOURCED** — not CONFIRMED — per the brief's own
+  status legend, since Lance hasn't reviewed these individually yet.
+
+**Source pool used** (see brief §11 for full citations): FBI burglary-timing data (SafeHome.org),
+a 2025 package-theft survey (Security.org), a Feb 2026 smart-lock vulnerability disclosure (Pen
+Test Partners), a Ponemon Institute insider-risk cost study, ASIS International
+tailgating/access-control stats, an offboarding-access-retention survey (Beyond Identity), an
+Allstate/Léger travel-oversharing survey, wearable-safety-device market research (Grand View
+Research), a Kaspersky stalking/dark-web-surveillance report, BLS injury-rate data, an ISEA
+glove-standard update, and Pollstar/Stadium Tech Report live-events-industry coverage.
+
+**Decisions made**
+- Kept the "Helps with" product-related links unchanged from the prior entry — the new real
+  content slotted into the existing headline/kicker/vertical structure without needing to change
+  which product each story points to.
+- Didn't touch the `.ph-img` photo placeholders — this entry is about story *content*, not
+  photography; the photo-selection decision from two entries back is still open and separate.
+
+**Verification**
+Confirmed via DOM query: zero remaining "Placeholder:" text on either page, all citation links
+(6 on the homepage, 4 on threat-awareness) resolve to their real URLs with correct `target`
+attributes.
+
+**Current project state**
+Committed locally (`522e7b8`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+1. Push when Lance confirms.
+2. These are SOURCED, not CONFIRMED — flag to Lance that a human read-through of the new content
+   is still worth doing before treating it as final, per the brief's own status legend.
+3. Photo selection/optimization and the ballistic-apparel/house-brand imagery gaps remain open,
+   unchanged from prior entries.

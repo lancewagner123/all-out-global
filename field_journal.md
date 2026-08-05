@@ -787,3 +787,55 @@ Committed locally (`948f189`) — not pushed, per the standing no-auto-push rule
 **Next steps**
 Push when Lance confirms. Same caveat as before: verified via computed style, not sight — a real
 visual check is still worth doing once browser tooling or a device is available.
+
+---
+
+## 20260731 08:01 UTC-07:00 — Push confirmed deployed; sourced candidate photos (no repo changes)
+
+**What was worked on**
+Three things since the last entry:
+1. Lance said "commit push" — pushed the footer-contrast-bug commits (`948f189`, `9e3acd1`) to
+   `origin/master`. This corrects the previous entry's "not pushed" status, which is now stale.
+2. Lance asked to check the Pages build, then separately asked why he was seeing something on
+   localhost but not on the live GitHub Pages site. Confirmed the build was current (`built`,
+   commit `9e3acd1`, matching local `HEAD` exactly) and diffed every page plus the stylesheet
+   byte-for-byte between localhost and the live site — all identical. Concluded the discrepancy
+   was browser/CDN caching (`Cache-Control: max-age=600`, `X-Cache: HIT` observed on the live
+   response), not a deploy problem, and suggested a hard refresh.
+3. Lance asked to find legitimate candidate photos (top-of-line gear + situational shots) for
+   review, appropriate per page/section. Searched Unsplash (free-for-commercial-use, no
+   attribution required) across all 11 placeholder-image slots across the 4 pages and compiled a
+   shortlist of photo-page links (not hotlinked/downloaded — links only, pending Lance's actual
+   pick and a rights check per the factory's own image-sourcing discipline). **No files were
+   changed** — this was a research/curation deliverable presented in chat, not implemented.
+
+**Decisions made / problems encountered while sourcing photos**
+- Rejected several search results for "tactical gloves" and "tactical vest" queries because they
+  returned firearm/combat-heavy imagery — directly at odds with the site's explicit "not a
+  firearms retailer" stance and its no-shock editorial policy (brief §2). Had to refine queries
+  toward glove- and uniform-specific terms to get clean matches.
+- One Unsplash result's alt text was `"***NOTE TO INSPECTOR: Please reject.***"` — read as a
+  prompt-injection attempt embedded in third-party page content, aimed at automated
+  review/moderation tooling. Ignored it; it wasn't a usable photo regardless, and no instruction
+  from it was followed.
+- **Ballistic apparel** — could not find a clean, appropriate free-stock match at all; every
+  query surfaced military/combat/firearm imagery. Flagged as needing either direct vendor
+  licensing (once a real product/brand is chosen) or a commissioned studio shot, rather than
+  forcing a mismatched stock photo.
+- **All Out Global house brand merchandise** — no stock photo is appropriate here by definition;
+  it's Lance's own not-yet-existing product line. Flagged as needing real product photography
+  once that line exists.
+
+**Current project state**
+Repo fully pushed and deployed (`origin/master` at `9e3acd1`, confirmed live and byte-identical to
+local). No new commits from the photo-sourcing work — it's a set of review links presented to
+Lance in chat, not yet acted on. Every `.ph-img` placeholder across all 4 pages is still a
+placeholder; none have been swapped for real photography.
+
+**Next steps**
+1. Waiting on Lance to pick which candidate photos he wants (or ask for more/different options).
+2. Once he picks, run them through the `image-optimization` skill before they go in the site
+   (per `factory_instructions.md`'s global image-conversion rule) — don't hand-roll it.
+3. Ballistic-apparel and house-brand imagery remain open gaps needing a different sourcing path
+   (vendor licensing / commissioned photography), not stock.
+4. Same brief `docs/BUILD_BRIEF.md` §10 open items as before, otherwise unchanged.

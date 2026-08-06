@@ -1115,3 +1115,30 @@ Committed locally (`73d380f`) — not pushed, per the standing no-auto-push rule
 3. Hero, "Who We Help" tiles, and Personal Protection review/merchandise images are still
    `.ph-img` placeholders — next candidates if Lance wants to keep going on photos.
 4. Sidebar citation/photo gap (§12) is a small template change if ever wanted.
+
+---
+
+## 20260806 00:06 UTC-07:00 — Pushed; got a real visual confirmation of the new photos
+
+**What was worked on**
+Two of the prior entry's open items got resolved this session:
+1. Lance asked to see the updated homepage. The screenshot tool — flaky most of this session —
+   worked this time, giving an actual visual confirmation (not just DOM checks) that the "In the
+   Headlines" module renders correctly: lead story photo, sidebar headline list, the 6-card photo
+   grid, source citations, and "Helps with" links all visible and laid out as intended.
+2. Lance said "commit and push" — pushed the photo/story-upgrade commits (`73d380f`, `85f959c`)
+   to `origin/master`. This corrects the previous entry's "not pushed" status.
+
+**Current project state — corrects prior entry**
+The previous entry's "Committed locally — not pushed" is now stale: working tree is clean and
+`origin/master` is fully caught up (`HEAD` at `85f959c`, 0 ahead/0 behind). The real-photo
+homepage (news-portal layout, sourced headlines, environmental-mood photography) is live on
+GitHub Pages.
+
+**Next steps**
+1. Same open items as before: hero, "Who We Help" tiles, and Personal Protection review/
+   merchandise images are still `.ph-img` placeholders — next candidates if Lance wants to keep
+   going on photos.
+2. Sidebar citation/photo gap (brief §12) is still a small template change if ever wanted.
+3. These stories remain SOURCED, not CONFIRMED (brief §11/§12) — a human read-through by Lance is
+   still worth doing before treating the content as fully final.

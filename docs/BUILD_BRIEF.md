@@ -284,3 +284,59 @@ at `assets/img/stories/`, generated via the `image-optimization` skill.
 Hero image, the four "Who We Help" tiles, and the Personal Protection review/merchandise photos
 are still `.ph-img` placeholders — out of scope for this pass, which was specifically about the
 "In the Headlines" / trend story cards.
+
+---
+
+## 13. "Out-there" story upgrade + more photos (2026-08-06, third pass)
+
+**Status: SOURCED, not CONFIRMED.** Lance asked for more intriguing/surprising stories —
+genuinely "wait, that's a thing?" material, not routine statistics — to drive curiosity-driven
+clicks while staying educational. Four more `general-purpose` research agents (one per vertical)
+were told explicitly to find surprising, technique-level, real, verified stories under the same
+no-victim-focus / no-fear-mongering rules as every prior pass.
+
+**This pass REPLACED essentially the entire "In the Headlines" module and all 4
+`threat-awareness.html` trend cards** — nearly every story from §11/§12 was swapped out for a
+more surprising one. Superseded stories remain valid, verified, and documented in §11/§12; they
+were not deleted, just taken off-page in favor of higher-intrigue material.
+
+| # | Topic | Source | Date | URL |
+|---|---|---|---|---|
+| 24 | Burglary rings hid spy cameras in fake turf, used fake deliveries to test occupancy | FOX 11 Los Angeles | 2026-05-21 | https://www.foxla.com/news/california-high-tech-burglary-rings-arrests |
+| 25 | Key fobs broadcast a signal thieves can relay to steal cars/open garages (230/237 models vulnerable) | Yahoo Autos | 2026-01-23 | https://autos.yahoo.com/safety-and-recalls/articles/car-key-fob-broadcasting-home-200553363.html |
+| 26 | Break-ins peak at lunchtime (12–1pm), not midnight | SafeWise, citing FBI 2024 data | 2025-08-12 | https://www.safewise.com/home-security-systems/learn/burglary-stats/ |
+| 27 | North Korea's shadow IT workforce inside Western tech companies via fabricated identities | Forbes | 2026-06-09 | https://www.forbes.com/sites/tylerroush/2026/06/09/north-korean-hackers-posing-as-fake-it-workers-behind-nearly-half-of-all-tech-firm-attacks-report-says/ |
+| 28 | Badges cloned from several feet away with a concealed long-range RFID reader | Bishop Fox / DEF CON 33 | 2014-09 (technique still actively taught/current per Aug. 2025 DEF CON schedule) | https://bishopfox.com/blog/tastic-rfid-thief-silent-deadly |
+| 29 | IT admins/engineers seen as the highest insider-risk group by security leaders (83%) | Cybersecurity Insiders, 2025 Insider Risk Report | 2025-10-30 | https://www.cybersecurity-insiders.com/2025-insider-risk-report-the-shift-to-predictive-whole-person-insider-risk-management/ |
+| 30 | Deepfake video-call scam: real-time deepfake used to impersonate a CFO/CEO, S$670,000 transferred | Mothership.sg | 2025-04-07 | https://mothership.sg/2025/04/finance-director-scammed-deepfake/ — **not currently used**, kept as a vetted alternate (business-fraud case study, not a personal-victim narrative, but not needed once other Commercial stories filled the available slots) |
+| 31 | "Snatcher": an app that turns Apple's Find My anti-theft feature into a way to locate/steal a device | Academic paper, ACM CCS 2026 / arXiv | 2026-06-19 | https://arxiv.org/abs/2606.21067 |
+| 32 | WhatsApp metadata reveals device type/age just from a phone number, no message needed | SecurityWeek | 2026-01-05 | https://www.securityweek.com/researcher-spotlights-whatsapp-metadata-leak-as-meta-begins-rolling-out-fixes/ |
+| 33 | Private jets trackable in real time, legally, via mandatory ADS-B safety broadcasts | The War Zone | 2024-05-17 | https://www.twz.com/news-features/congress-has-made-fully-obscuring-aircraft-ownership-information-a-reality |
+| 34 | Boarding-pass barcodes expose enough data to log into a stranger's frequent-flyer account | Krebs on Security | 2015-10 (foundational finding; 2025 trade press reports the same mechanism in active "lost luggage" scams) | https://krebsonsecurity.com/2015/10/whats-in-a-boarding-pass-barcode-a-lot/ |
+| 35 | Robot dogs (Boston Dynamics Spot) patrol FIFA World Cup 2026 stadiums, no facial recognition | Newsweek | 2026-06-05 | https://www.newsweek.com/hyundais-robot-dogs-will-be-patrolling-the-fifa-world-cup-2026-12037758 |
+| 36 | Anti-drone arsenal (net-drones, autopilot hijacking) guards the World Cup; 1,100+ unauthorized drones detected | Forbes / DroneDJ | 2026-06-05 / 2026-08-05 | https://www.forbes.com/sites/sofiachierchio/2026/06/05/the-365-million-race-to-drone-proof-the-world-cup/ |
+| 37 | AI weapons scanners miss knives 42% of the time in independent field testing | NBC Chicago Investigates | 2024-11-18/19 | https://www.nbcchicago.com/investigations/nbc-5-investigates-weapons-detector-faces-scrutiny-amid-growing-industry/3603962/ (same source as §11 item 14, now actually used on-site) |
+| 38 | NFL rolled out league-wide facial-authentication (selfie-based) for staff/media at all 32 stadiums | The Record (Recorded Future News) | 2024-08-01 | https://therecord.media/nfl-to-roll-out-facial-authentication-league-wide |
+| 39 | Drone reconnaissance of upscale neighborhoods before break-ins | CBS News Los Angeles | 2024-11-26 | https://www.cbsnews.com/losangeles/news/stevenson-ranch-neighbors-claim-thieves-are-using-drones-to-case-their-homes — **flagged by its own research agent as the weakest fit** (leans on one named resident's account) and **deliberately not used anywhere**, not even as light color, per that caution |
+
+**8 new photos** sourced from Pexels (same license terms as §12 — free-for-commercial-use, no
+attribution required), verified individually, downloaded to `assets/raw-photos/`, optimized via
+the `image-optimization` skill into `assets/img/stories/`:
+
+| File | Used for | Source |
+|---|---|---|
+| `residential-key-fob` | Key-fob relay-attack story | Pexels 5126885 |
+| `personal-airtag-tracker` | Snatcher/Find-My story — a literal AirTag photo | Pexels 7825627 |
+| `personal-boarding-pass` | Boarding-pass barcode story — a literal boarding pass photo | Pexels 28553779 |
+| `entertainment-robot-dog` | World Cup robot-dog patrol story | Pexels 32998808 |
+| `entertainment-drone` | Anti-drone arsenal story | Pexels 4173473 |
+| `commercial-remote-workspace` | IT-admin insider-risk trend (threat-awareness.html) | Pexels 374857 |
+| `entertainment-security-gate` | Downloaded for the weapons-scanner sidebar story, **not yet used** — sidebar has no photo slot (same structural gap as §12) | Pexels 10640271 |
+| `personal-messaging-app` | Downloaded for the WhatsApp-metadata sidebar story, **not yet used**, same reason | Pexels 7120127 |
+
+**Sidebar gap persists and got worse this pass:** 3 of the 4 `index.html` sidebar stories this
+round (NK IT workers, lunchtime burglary, weapons scanner, WhatsApp metadata) are among the most
+intriguing headlines of the whole set, and none of them get a photo — the sidebar's headline-only
+design (no `.story-photo` slot) is now visibly costing some of the best material a visual. Worth
+revisiting if Lance wants sidebar photos; noted as a template change, not a content one, same as
+§12's version of this same gap.

@@ -143,6 +143,20 @@ p:last-child { margin-bottom: 0; }
 }
 .ph-img span { max-width: 26ch; }
 
+/* ---------- Real story photos ----------
+   Sourced 2026-08-05 (Pexels/Unsplash free-license, verified individually — several initial
+   Unsplash picks turned out to be Unsplash+ paid content despite appearing in normal search
+   results, so every image here was confirmed free before download). Same --ar custom-property
+   pattern as .ph-img so it drops into the same markup slots; crops via object-fit instead of
+   letting each photo's native aspect ratio distort the grid. */
+.story-photo {
+  aspect-ratio: var(--ar, 16 / 9);
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.story-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile .story-photo, .hero .story-photo { border-radius: 0; }
+
 /* ---------- Hero ---------- */
 .hero { position: relative; color: var(--white); overflow: hidden;
   height: min(46vw, 620px); min-height: 380px; }

@@ -2,6 +2,7 @@
 Thumbs.db
 *.log
 .claude/settings.local.json
+.claude/scheduled_tasks.lock
 
 # docs/ and field_journal.md are normally git-ignored by default (see
 # factory_instructions.md §6) since they can contain non-public research notes.

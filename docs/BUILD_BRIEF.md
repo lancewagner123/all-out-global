@@ -229,3 +229,58 @@ research agents were told to prefer, but each was flagged by its agent as still 
 current, most-cited reference on that specific trend as of 2026 (not superseded by anything more
 recent found during research) — kept for that reason, with the age called out on-page in each
 citation rather than hidden.
+
+---
+
+## 12. Shareable news-headline sources + real photos (2026-08-05, second pass)
+
+**Status: SOURCED, not CONFIRMED.** Lance asked for two upgrades to the §11 content: (a) real
+mainstream news articles (not just research-report citations) that are genuinely "shareable," and
+(b) real photos to replace the `.ph-img` placeholders on story cards, with an environmental/
+situational mood rather than facial-expression close-ups. Two more `general-purpose` research
+agents found the articles below; photos were sourced and verified directly by Claude.
+
+**Some §11 citations were upgraded or replaced on-page as a result** — §11 itself is left
+unedited as the historical record of the first pass; this table + the notes below document what
+actually changed and why.
+
+| # | Topic | Source | Date | URL | On-site change |
+|---|---|---|---|---|---|
+| 15 | Package theft surge tied to online sales events | WHIO-TV (Dayton, OH) | 2026-06-25 | https://www.whio.com/news/local/surge-package-thefts-predicted-online-sales-week/Y74P7YKWBFFSFCEI64M3DFYQE4/ | Added as a second citation alongside #2 (Security.org) on the package-theft story |
+| 16 | Burglars hiding cameras near homes to case residents' routines before break-ins | Fox News, citing a San Jose PD pattern advisory | 2026-01-31 | https://www.foxnews.com/us/burglars-caught-spying-homes-hidden-camouflaged-cameras-before-striking-neighborhoods | **Replaced #3** (Shelly smart-lock vulnerability) — the residential "smart-lock" story now covers this instead; #3 remains a valid, verified alternate if the smart-lock angle is wanted back |
+| 17 | Vacation-oversharing survey, independently reported | NOW Toronto | 2026-07-07 | https://nowtoronto.com/news/posting-your-vacation-online-could-put-your-home-at-risk-study/ | Found as a more shareable outlet covering the same Allstate/Léger survey as #7 — **not yet swapped in** (sidebar items have no citation slot; see below) |
+| 18 | Stalkerware companies repeatedly hacked/leaked, exposing the people they track | TechCrunch | 2026-02-09 | https://techcrunch.com/2026/02/09/hacked-leaked-exposed-why-you-should-stop-using-stalkerware-apps/ | **Replaced #9** (Kaspersky press release) — the personal/travel "stalking" story headline, deck, and citation now reflect this article on both `index.html` and `threat-awareness.html` |
+| 19 | Fox News general travel-safety tips (phone data, public Wi-Fi, oversharing abroad) | Fox News (CyberGuy) | 2026-04-13 | https://www.foxnews.com/tech/smart-travel-safety-tips-before-your-next-trip | Found, verified, **not used** — lighter on hard data than the other picks; kept as a vetted alternate |
+| 20 | Bucs/Raymond James Stadium facial-recognition "Express Entry" rollout | FOX 13 Tampa Bay | 2025-08-05 | https://www.fox13news.com/news/bucs-launching-express-entry-facial-recognition-raymond-james-stadium-heres-how-works | Added as a co-citation alongside #21 on the biometric-credentialing story, replacing #13 (Stadium Tech Report) as the primary source |
+| 21 | Facial recognition adoption across 21+ stadiums/arenas, with civil-liberties pushback | NBC News | ~2024-08 (dated via corroborating coverage) | https://www.nbcnews.com/tech/security/facial-recognition-technology-use-stadiums-us-sparks-protests-rcna167410 | Co-citation with #20, see above |
+| 22 | "Coffee badging" (badge-swipe gaming trend) resurgence | Forbes | 2026-01-03 | https://www.forbes.com/sites/bryanrobinson/2026/01/03/4-reasons-coffee-badging-is-making-a-comeback-in-2026/ | Found, verified, **not used** — Lance's own judgment call: this is a workplace-culture/RTO-compliance trend, not centrally a security-risk story, so using it under the Commercial security vertical would misrepresent what it's actually about. Kept as a documented alternate only. |
+| 23 | Same "coffee badging" trend, independent coverage | CNBC | 2024-12-18 | https://www.cnbc.com/2024/12/18/how-coffee-badging-became-a-revolt-against-return-to-office-mandates.html | Co-citation with #22, same not-used reasoning |
+
+**Sidebar citation gap, noted honestly:** `.news-sidebar` items (`index.html` "More Coverage")
+are headline-only by design — no `.story-meta` slot exists there. Item #17 (NOW Toronto) is a
+better, more shareable source for the oversharing story than #7 (GlobeNewswire press release),
+but wasn't swapped in because there's nowhere on-page to show it. If a citation becomes wanted on
+sidebar items specifically, that's a small template change, not a content one.
+
+**Photos:** sourced from Pexels and Unsplash (both free-for-commercial-use, no attribution
+required), verified individually before download — this pass caught **4 of 5 initial Unsplash
+picks turning out to be Unsplash+ paid content** (Getty/iStock images routed through Unsplash,
+indistinguishable from free results in search-result alt text) — those were replaced with
+Pexels equivalents, which correctly separates its own "Sponsored Photos" (iStock) from free
+results. Raw originals kept at `assets/raw-photos/`; optimized WebP derivatives (270/400/600w)
+at `assets/img/stories/`, generated via the `image-optimization` skill.
+
+| File | Used for | Source |
+|---|---|---|
+| `residential-packages-doorstep` | Daytime-burglary lead story + package-theft story (both pages) | Pexels 7363199 |
+| `commercial-empty-office-corridor` | Tailgating story + offboarding trend | Pexels 2294135 |
+| `personal-transit-platform-night` | Stalking/stalkerware story (both pages) | Pexels 31267520 |
+| `personal-glove-closeup` | Hand-injury/gloves story (both pages) | Unsplash (confirmed genuinely free) |
+| `residential-security-camera` | Hidden-camera burglary-tactic story | Pexels 25384403 |
+| `entertainment-badge-entry` | Biometric-credentialing story | Pexels 5225436 |
+| `entertainment-summit-panel` | Downloaded for the venue-summit story, **not yet used** — that story lives in the sidebar, which has no photo slot (same structural gap as the citation issue above) | Pexels 29335353 |
+| `personal-smartwatch-outdoors` | Downloaded for the wearable-safety-device sidebar story, **not yet used**, same sidebar-has-no-photo-slot reason | Pexels 36697933 |
+
+Hero image, the four "Who We Help" tiles, and the Personal Protection review/merchandise photos
+are still `.ph-img` placeholders — out of scope for this pass, which was specifically about the
+"In the Headlines" / trend story cards.

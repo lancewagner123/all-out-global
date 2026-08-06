@@ -1052,3 +1052,66 @@ Committed locally (`522e7b8`) — not pushed, per the standing no-auto-push rule
    is still worth doing before treating it as final, per the brief's own status legend.
 3. Photo selection/optimization and the ballistic-apparel/house-brand imagery gaps remain open,
    unchanged from prior entries.
+
+---
+
+## 20260805 23:18 UTC-07:00 — Real photos wired in; several stories upgraded to mainstream news
+
+**What was worked on**
+Lance reviewed the first photo shortlist and gave two pieces of feedback: the "uncomfortable"
+mood should read as environmental/situational (an exposed package, an empty corridor, isolation)
+rather than someone frustrated at a phone or laptop screen, and it'd help to have real, current,
+shareable news headlines (not just research-report citations) for each category. Launched 2 more
+research agents for the news-headline ask while re-sourcing photos directly. Lance then said
+"proceed with your suggestions," authorizing the download.
+
+**A real problem surfaced while downloading — worth remembering**
+Confirmed **4 of 5 initial Unsplash picks were actually Unsplash+ paid content** (Getty/iStock
+images distributed through Unsplash) — completely indistinguishable from free results via
+alt-text-only search extraction, the method used for photo sourcing all session. Only caught it
+because the screenshot tool happened to work long enough to visually inspect a candidate and spot
+the "For Unsplash+" label / lock icon on the Download button. Confirmed a fast, reliable
+JS-based check going forward: `document.querySelector('meta[property="og:image"]').content`
+starting with `plus.unsplash.com` (or the page text containing "Licensed under the Unsplash+
+License") means paid — check this before trusting any future Unsplash pick, don't rely on alt
+text or search-result appearance alone. Pexels turned out to be much more reliable for this
+session's needs — it visually separates its own "Sponsored Photos" (iStock) from free results,
+and every Pexels pick this session checked out clean.
+
+**What was built**
+- 8 photos sourced (7 Pexels + 1 verified-free Unsplash), downloaded to `assets/raw-photos/`,
+  optimized via the `image-optimization` skill (real `cwebp` encoder, 270/400/600w, 2.4MB → 0.38MB,
+  84% reduction) into `assets/img/stories/`.
+- New `.story-photo` CSS component replaces `.ph-img` on all 11 story-card photo slots across
+  `index.html` and `threat-awareness.html` — same `--ar` custom-property pattern, crops via
+  `object-fit: cover` so varying source aspect ratios don't distort the grid.
+- Upgraded several stories to real, verified mainstream news coverage: residential smart-lock
+  story replaced with Fox News' hidden-camera-burglary-tactic piece; stalking story rewritten
+  around TechCrunch's stalkerware-breaches piece (both pages); package theft gained a WHIO-TV
+  co-citation; biometric credentialing now leads with FOX13 Tampa Bay + NBC News.
+- **Declined to use "coffee badging"** despite solid Forbes/CNBC coverage — flagged this to Lance
+  as a workplace-culture trend, not a security-risk story, and he didn't object; using it under
+  the Commercial vertical would have misrepresented what it's actually about. Documented as a
+  found-but-unused alternate rather than silently dropped.
+- Documented everything as `docs/BUILD_BRIEF.md` §12 (SOURCED, not CONFIRMED), including two
+  honest structural gaps: `.news-sidebar` items have no citation slot (so a better oversharing
+  source, NOW Toronto, wasn't swapped in) and two downloaded photos (venue-summit, smartwatch)
+  have no home yet since their stories live in the sidebar, which also has no photo slot.
+
+**Verification**
+Confirmed via DOM: all `.story-photo` images load with correct natural dimensions, all upgraded
+citation links resolve to their real URLs, remaining `.ph-img` count (5 per page) matches exactly
+what was out of scope (hero, "Who We Help" tiles, Guides section, review/merchandise photos).
+Screenshot tool was flaky again for a final visual pass — relied on DOM verification, same
+caveat as most of this session.
+
+**Current project state**
+Committed locally (`73d380f`) — not pushed, per the standing no-auto-push rule. Also gitignored
+`.claude/scheduled_tasks.lock` (harness state that showed up as untracked, not project content).
+
+**Next steps**
+1. Push when Lance confirms.
+2. Real visual check still worth doing once screenshot tooling is reliable, or on a real device.
+3. Hero, "Who We Help" tiles, and Personal Protection review/merchandise images are still
+   `.ph-img` placeholders — next candidates if Lance wants to keep going on photos.
+4. Sidebar citation/photo gap (§12) is a small template change if ever wanted.

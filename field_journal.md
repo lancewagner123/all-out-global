@@ -1142,3 +1142,63 @@ GitHub Pages.
 2. Sidebar citation/photo gap (brief §12) is still a small template change if ever wanted.
 3. These stories remain SOURCED, not CONFIRMED (brief §11/§12) — a human read-through by Lance is
    still worth doing before treating the content as fully final.
+
+---
+
+## 20260806 00:31 UTC-07:00 — Headlines replaced with more surprising, curiosity-driven stories
+
+**What was worked on**
+Lance said the existing headlines/stories were too routine and asked for "out-there" stories
+that would generate genuine intrigue and clicks while still being educational. Sent 4 more
+research agents (one per vertical: residential, commercial, personal/travel, entertainment),
+each explicitly briefed to find surprising, technique-level, counterintuitive real stories — not
+statistics — under the same no-victim-focus / no-fear-mongering editorial rules as every prior
+research pass this project has run.
+
+**What changed**
+Replaced nearly the entire "In the Headlines" module (`index.html`) and all 4
+`threat-awareness.html` trend cards with the new material: burglary rings hiding cameras in fake
+turf and using decoy deliveries to test occupancy (new lead story), key-fob relay attacks,
+badges cloned from across a coffee shop with a concealed reader, an academic exploit ("Snatcher")
+that turns Apple's Find My anti-theft feature into a device-theft tool, boarding-pass barcodes
+that expose frequent-flyer accounts, robot dogs patrolling World Cup stadiums, an anti-drone
+arsenal guarding the same venues, AI weapons scanners that miss knives 42% of the time, North
+Korea's shadow IT workforce inside Western tech companies, and more. Full 16-source list
+documented as `docs/BUILD_BRIEF.md` §13 (SOURCED, not CONFIRMED) — prior §11/§12 stories weren't
+deleted, just taken off-page in favor of higher-intrigue material.
+
+**Decision — restructured which stories get photos**
+Moved the most visually compelling new stories (AirTag exploit, robot dog, key fob, badge
+cloning, boarding pass, drone) into the photo grid, and equally intriguing but harder-to-
+photograph ones (NK IT infiltration, the 42% weapons-scanner stat, WhatsApp metadata) into the
+sidebar, where headline text alone has to carry the hook. Flagged in the brief that this makes
+the sidebar-has-no-photo-slot structural gap (first noted in §12) more costly this round, since
+3 of the 4 sidebar stories this time are genuinely some of the best material in the whole set.
+
+**A research agent policed itself well, worth remembering**
+The residential agent found a real, verifiable drone-reconnaissance story but flagged it as the
+weakest fit for the no-victim-focus rule (leans on one named resident's account) and
+recommended against using it even as light color. Followed that recommendation — didn't use it
+anywhere, not even partially.
+
+**8 new photos** sourced from Pexels (same verified-free process as the prior pass — download →
+`image-optimization` skill → WebP derivatives), including a literal AirTag photo and a literal
+boarding-pass photo, both unusually on-the-nose matches for their stories.
+
+**Verification**
+Confirmed via DOM: all `.story-photo` images load (two had a brief transient load-race on first
+check, resolved cleanly on reload — not a real bug), all new citation links resolve to their real
+URLs. Got an actual screenshot this time (tool cooperated) confirming the visual layout looks
+right — distinct, well-matched photos across the grid (car key fob in hand, someone badging
+through a gate, an AirTag on a table, a boarding pass, a robot dog, a drone in flight).
+
+**Current project state**
+Committed locally (`72317f3`) — not pushed, per the standing no-auto-push rule.
+
+**Next steps**
+1. Push when Lance confirms.
+2. Same open items as before: hero, "Who We Help" tiles, and Personal Protection review/
+   merchandise images are still `.ph-img` placeholders.
+3. Sidebar photo/citation gap is now touching more of the strongest content — worth prioritizing
+   if Lance wants to keep iterating on this module.
+4. All of §11/§12/§13 remain SOURCED, not CONFIRMED — human read-through still open.

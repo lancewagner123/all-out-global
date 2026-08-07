@@ -1272,15 +1272,12 @@ factory site with any logo files (Arizona Combat Sports' `img/logo-400w.webp` /
   observed being fetched live — worth a real spot-check next time screenshots work.
 
 **Current project state**
-All 5 pages, `style.css`, `docs/BUILD_BRIEF.md`, and the new `assets/logo-source/` + `img/`
-folders are modified/created but **not yet committed** — working tree is dirty (`AOGLS Logo.JPG`
-at the project root and the two new folders are untracked). Not pushed, per the standing
-no-auto-push rule. Local dev server confirmed running and serving the new files correctly on
-port 8847.
+Committed locally (`4c200b7`) — working tree is clean. Not pushed, per the standing no-auto-push
+rule (branch is 1 commit ahead of `origin/master`). Local dev server confirmed running and
+serving the new files correctly on port 8847.
 
 **Next steps**
-1. Commit this work (the source JPEG, derivative folders, HTML/CSS changes, and the BUILD_BRIEF
-   update) — not yet done as of this entry.
+1. Push when Lance confirms.
 2. Spot-check `favicon.ico` visually once screenshot capture is working again, or in a browser
    that actually prefers `.ico` over the declared WebP icon.
 3. Everything else carried forward unchanged: hero/tiles/review-merchandise images still

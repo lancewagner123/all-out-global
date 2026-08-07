@@ -1202,3 +1202,87 @@ Committed locally (`72317f3`) — not pushed, per the standing no-auto-push rule
 3. Sidebar photo/citation gap is now touching more of the strongest content — worth prioritizing
    if Lance wants to keep iterating on this module.
 4. All of §11/§12/§13 remain SOURCED, not CONFIRMED — human read-through still open.
+
+---
+
+## 20260806 00:34 UTC-07:00 — Pushed the out-there story upgrade
+
+**What was worked on**
+Lance said "push it" — pushed the "out-there" headline/photo commits (`72317f3`, `6117c5c`) to
+`origin/master`.
+
+**Current project state — corrects prior entry**
+The previous entry's "Committed locally — not pushed" is now stale: working tree is clean and
+`origin/master` is fully caught up (`HEAD` at `6117c5c`, 0 ahead/0 behind). The new curiosity-
+driven headlines (fake-turf spy cameras, key-fob relay attacks, the Find My exploit, badge
+cloning, robot dogs at the World Cup, and the rest of the §13 lineup) are live on GitHub Pages.
+
+**Next steps**
+Unchanged from the prior entry otherwise: hero/tiles/review-merchandise images still `.ph-img`
+placeholders; sidebar photo/citation gap still open; all sourced content (§11/§12/§13) still
+awaiting Lance's own read-through before being treated as fully final.
+
+---
+
+## 20260806 17:29 UTC-07:00 — Built the full logo/favicon icon set
+
+**What was worked on**
+Lance supplied the site's current logo (`AOGLS Logo.JPG` — an orca/hammerhead badge coin, dropped
+at the project root) and asked for "the standard variations that we generally create." Built the
+complete favicon/app-icon set from it and wired it into every page. This is the first factory
+site to ship the full set described in `feature_catalog.html`'s "Canonical Tag + Favicon/App-Icon
+Completeness" entry — every other site has only part of it.
+
+**Why**
+No prior session-level context for "standard variations" existed in this project, so the
+convention was pulled from `feature_catalog.html` and cross-checked against the only other
+factory site with any logo files (Arizona Combat Sports' `img/logo-400w.webp` /
+`logo-512w.webp`) rather than guessed from scratch.
+
+**Files/folders/systems touched**
+- `assets/logo-source/` (new) — `logo-master-2000.png` (content-aware crop of the source JPEG)
+  plus `icon-{16,32,48,180,192,512}.png` resized from it.
+- `img/` (new) — `favicon.ico`, `apple-touch-icon.png`, `logo-{200,400,512}w.webp`.
+- `assets/css/style.css` — added `.brand img` rule (40×40, circular).
+- All 5 HTML pages — added `theme-color` meta + 3 icon `<link>` tags to `<head>`; added the logo
+  `<img>` to the header `.brand` mark (previously text-only).
+- `docs/BUILD_BRIEF.md` — new §14 documenting the full pipeline and decisions.
+
+**Decisions made**
+- Cropped the badge tightly out of its white canvas (source had the badge occupying only ~90% of
+  the frame) rather than shrinking the full padded square — keeps the mark legible at 16×16.
+- Hand-built `favicon.ico` via a PowerShell ICONDIR/ICONDIRENTRY writer (modern PNG-embedded ICO
+  format) instead of installing ImageMagick, since no `magick` binary is present on this machine
+  and the `image-optimization` skill's own docs flag winget's MSIX ImageMagick install as
+  trap-prone. Verified the hand-built file by loading it with `System.Drawing.Icon`.
+- `theme-color` set to `#0f1620`, the site's existing `--ink` token (same value as
+  `.site-header`'s background) rather than a new color.
+- Skipped an SVG icon variant — this logo is a photorealistic illustrated badge, not a good
+  vector-conversion candidate. Skipped a `manifest.json`/PWA prompt as out of scope (no other
+  factory site has one); the 192/512 PNGs are staged in `logo-source/` if that changes later.
+
+**Problems encountered**
+- No ImageMagick on this machine (only `cwebp` and the unrelated Windows `convert.exe` on PATH) —
+  solved per "Decisions made" above.
+- Browser screenshot capture (`Page.captureScreenshot` via CDP) timed out repeatedly this
+  session — an extension-side issue, not related to this work. Verified the result instead via
+  `read_network_requests` (confirmed `img/logo-200w.webp` returns 200 on `index.html` and
+  `contact.html`) and via the `System.Drawing.Icon` load check for the `.ico` file. Chrome used
+  the WebP `rel="icon"` over the `.ico` fallback in this session, so the `.ico` itself was never
+  observed being fetched live — worth a real spot-check next time screenshots work.
+
+**Current project state**
+All 5 pages, `style.css`, `docs/BUILD_BRIEF.md`, and the new `assets/logo-source/` + `img/`
+folders are modified/created but **not yet committed** — working tree is dirty (`AOGLS Logo.JPG`
+at the project root and the two new folders are untracked). Not pushed, per the standing
+no-auto-push rule. Local dev server confirmed running and serving the new files correctly on
+port 8847.
+
+**Next steps**
+1. Commit this work (the source JPEG, derivative folders, HTML/CSS changes, and the BUILD_BRIEF
+   update) — not yet done as of this entry.
+2. Spot-check `favicon.ico` visually once screenshot capture is working again, or in a browser
+   that actually prefers `.ico` over the declared WebP icon.
+3. Everything else carried forward unchanged: hero/tiles/review-merchandise images still
+   `.ph-img` placeholders; sidebar photo/citation gap still open; §11/§12/§13 content still
+   awaiting Lance's own read-through.
